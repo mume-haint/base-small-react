@@ -1,0 +1,96 @@
+import * as Yup from 'yup';
+import {useEffect} from 'react';
+// form
+import {useForm} from 'react-hook-form';
+import {yupResolver} from '@hookform/resolvers/yup';
+// @mui
+import {Button, Card, Grid, Stack, Typography} from '@mui/material';
+// routes
+// components
+import {RHFCheckbox, RHFFormProvider, RHFMultiCheckbox, RHFSelect, RHFText} from '../components/hook-form';
+
+// ----------------------------------------------------------------------
+
+interface RHFFormProps {
+    text: string,
+    checkbox: boolean,
+    multicheckbox: string[],
+    select: string
+}
+
+export default function RHFPage() {
+
+    const RHFPageSchema = Yup.object().shape({
+        text: Yup.string().required('Tên đăng nhập không được để trống'),
+        checkbox: Yup.boolean().required(),
+        multicheckbox: Yup.array().of(Yup.string().required()).required(),
+        select: Yup.string().required('Quyền không được để trống'),
+    });
+
+    const defaultValues: RHFFormProps = {
+        text: '',
+        checkbox: false,
+        multicheckbox: [],
+        select: ''
+    };
+
+    const methods = useForm<RHFFormProps>({
+        resolver: yupResolver(RHFPageSchema),
+        defaultValues,
+    });
+
+    const {
+        handleSubmit,
+    } = methods;
+
+
+    useEffect(() => {
+
+    }, []);
+
+    const onSubmit = async (formData: unknown) => {
+        console.log(formData)
+    };
+
+    return (
+        <RHFFormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+            <Grid container spacing={3}>
+                <Grid item xs={12} md={8}>
+                    <Card sx={{ p: 3 }}>
+                        <Stack spacing={3}>
+                            <Stack direction='column' spacing={1}>
+                                <Typography>Text</Typography>
+                                <RHFText name="text" />
+                            </Stack>
+                            <Stack direction='column' spacing={1}>
+                                <Typography>Checkbox</Typography>
+                                <RHFCheckbox name="checkbox" label="asd" />
+                            </Stack>
+                            <Stack direction='column' spacing={1}>
+                                <Typography>Multi checkbox</Typography>
+                                <RHFMultiCheckbox name="multicheckbox" options={['123', '456']} />
+                            </Stack>
+                            <Stack direction='column' spacing={1}>
+                                <Typography>Select</Typography>
+                                <RHFSelect name="select">
+                                    <option key="0" value="">
+                                        0
+                                    </option>
+                                    <option key="1" value="1">
+                                        1
+                                    </option>
+                                    <option key="2" value="2">
+                                        2
+                                    </option>
+                                </RHFSelect>
+                            </Stack>
+                            <Stack direction="row" justifyContent="flex-end" spacing={3}>
+                                <Button variant="outlined" type="submit">Cập nhật</Button>
+                            </Stack>
+                        </Stack>
+                    </Card>
+                </Grid>
+            </Grid>
+        </RHFFormProvider>
+    );
+}
