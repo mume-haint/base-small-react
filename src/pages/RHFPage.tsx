@@ -7,7 +7,15 @@ import {yupResolver} from '@hookform/resolvers/yup';
 import {Button, Card, Grid, Stack, Typography} from '@mui/material';
 // routes
 // components
-import {RHFCheckbox, RHFFormProvider, RHFMultiCheckbox, RHFSelect, RHFText} from '../components/hook-form';
+import {
+    RHFCheckbox,
+    RHFFormProvider,
+    RHFMultiCheckbox,
+    RHFRadioGroup,
+    RHFSelect, RHFSwitch,
+    RHFText
+} from 'src/components/hook-form';
+import {RHFDate} from "src/components/hook-form";
 
 // ----------------------------------------------------------------------
 
@@ -15,23 +23,32 @@ interface RHFFormProps {
     text: string,
     checkbox: boolean,
     multicheckbox: string[],
-    select: string
+    select: string,
+    date: unknown,
+    radiogroup: string,
+    switch: boolean
 }
 
 export default function RHFPage() {
 
     const RHFPageSchema = Yup.object().shape({
-        text: Yup.string().required('Tên đăng nhập không được để trống'),
+        text: Yup.string().required('text không được để trống'),
         checkbox: Yup.boolean().required(),
         multicheckbox: Yup.array().of(Yup.string().required()).required(),
-        select: Yup.string().required('Quyền không được để trống'),
+        select: Yup.string().required('select không được để trống'),
+        date: Yup.mixed().required('date không được để trống'),
+        radiogroup: Yup.string().required('radiogroup không được để trống'),
+        switch: Yup.boolean().required()
     });
 
     const defaultValues: RHFFormProps = {
         text: '',
         checkbox: false,
         multicheckbox: [],
-        select: ''
+        select: '',
+        date: undefined,
+        radiogroup: '',
+        switch: true,
     };
 
     const methods = useForm<RHFFormProps>({
@@ -48,7 +65,7 @@ export default function RHFPage() {
 
     }, []);
 
-    const onSubmit = async (formData: unknown) => {
+    const onSubmit = async (formData: RHFFormProps) => {
         console.log(formData)
     };
 
@@ -83,6 +100,27 @@ export default function RHFPage() {
                                         2
                                     </option>
                                 </RHFSelect>
+                            </Stack>
+                            <Stack direction='column' spacing={1}>
+                                <Typography>Date</Typography>
+                                <RHFDate name="date" />
+                            </Stack>
+                            <Stack direction='column' spacing={1}>
+                                <Typography>Radio group</Typography>
+                                <RHFRadioGroup
+                                    name="radiogroup"
+                                    options={[
+                                        'asd',
+                                        '123'
+                                    ]}
+                                    getOptionLabel={[
+                                        'asd1',
+                                        '1232'
+                                    ]}
+                                />
+                            </Stack>
+                            <Stack direction='column' spacing={1}>
+                                <RHFSwitch name="switch" label="Switch" />
                             </Stack>
                             <Stack direction="row" justifyContent="flex-end" spacing={3}>
                                 <Button variant="outlined" type="submit">Cập nhật</Button>

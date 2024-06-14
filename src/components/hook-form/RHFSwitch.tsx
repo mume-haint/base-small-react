@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { useFormContext, Controller } from 'react-hook-form';
 // @mui
 import { Switch, FormControlLabel } from '@mui/material';
+import {FormHelperText} from "~/@mui/material";
 
 // ----------------------------------------------------------------------
 
@@ -26,7 +27,16 @@ export default function RHFSwitch({ name, label, ...other }: Props) {
                 <Controller
                     name={name}
                     control={control}
-                    render={({ field }) => <Switch {...field} checked={field.value} />} />
+                    render={({ field, fieldState: { error } }) =>
+                        <>
+                            <Switch {...field} checked={field.value} />
+                            {!!error && (
+                                <FormHelperText error sx={{ px: 2 }}>
+                                    {error.message}
+                                </FormHelperText>
+                            )}
+                        </>
+                } />
             }
             {...other}
         />

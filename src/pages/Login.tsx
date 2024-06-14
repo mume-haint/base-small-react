@@ -11,12 +11,14 @@ import {RHFFormProvider, RHFText} from '../components/hook-form';
 import {useDispatch} from "react-redux";
 import {loginUser} from "../redux/slices/authSlice.ts";
 import {LoginFormProps} from "../types/auth.ts";
+import {useNavigate} from "react-router-dom";
 
 // ----------------------------------------------------------------------
 
 
 export default function Login() {
     const dispatch = useDispatch()
+    const navigate = useNavigate()
     const RHFLoginSchema = Yup.object().shape({
         username: Yup.string().required('Tên đăng nhập không được để trống'),
         password: Yup.string().required('Password không được để trống'),
@@ -41,7 +43,8 @@ export default function Login() {
     }, []);
 
     const onSubmit = async (formData: LoginFormProps) => {
-        dispatch(loginUser(formData))
+        await dispatch(loginUser(formData));
+        navigate('/');
     };
 
     return (

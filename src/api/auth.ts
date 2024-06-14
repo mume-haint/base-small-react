@@ -14,7 +14,7 @@ export async function login(username: string, password: string) {
     };
 
     return new Promise((resolve) => {
-        setTimeout(() => resolve(fakeResponse), 500); // Simulate network latency
+        setTimeout(() => resolve(fakeResponse), 2000); // Simulate network latency
     });
 }
 

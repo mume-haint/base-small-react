@@ -67,8 +67,7 @@ const reducer = (state: PostContextData, action: PostAction) => {
             return state;
         case PostContextAction.STORE:
             if(payload.store) {
-                const newData = [...state.data, payload.store];
-                console.log(newData)
+                const newData = [...state.data, payload.store.data];
                 return {
                     ...state,
                     data: newData,

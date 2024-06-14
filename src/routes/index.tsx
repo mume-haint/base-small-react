@@ -1,35 +1,39 @@
-import {createBrowserRouter, createRoutesFromElements, Route} from "react-router-dom";
-import DashboardLayout from "../layouts";
-import {authRouter, userRouter} from "./paths.tsx";
+import {Navigate, Outlet, useRoutes} from "react-router-dom";
+import DashboardLayout from "src/layouts/dashboard";
+import {Suspense} from "react";
+import Login from "src/pages/Login.tsx";
+import Dashboard from "src/pages/Dashboard.tsx";
+import Posts from "src/pages/Posts.tsx";
+import ReduxProfile from "src/pages/ReduxProfile.tsx";
+import RHFPage from "src/pages/RHFPage.tsx";
 
 
+export default function Router() {
+    const routes = useRoutes([
+        {
+            element: (
+                <DashboardLayout>
+                    <Suspense>
+                        <Outlet />
+                    </Suspense>
+                </DashboardLayout>
+            ),
+            children: [
+                { element: <Dashboard />, index: true },
+                { path: 'posts', element: <Posts /> },
+                { path: 'redux-profile', element: <ReduxProfile /> },
+                { path: 'rhf-page', element: <RHFPage /> },
+            ],
+        },
+        {
+            path: 'login',
+            element: <Login />,
+        },
+        {
+            path: '*',
+            element: <Navigate to="/login" replace />,
+        },
+    ]);
 
-
-
-const router = createBrowserRouter(
-    createRoutesFromElements(
-        <>
-            <Route path="/" element={<DashboardLayout />}>
-                {
-                    authRouter.map(route => (
-                        <Route
-                            key={route.path}
-                            path={route.path}
-                            element={route.element}
-                        />
-                    ))
-                }
-                {
-                    userRouter.map(route => (
-                        <Route
-                            key={route.path}
-                            path={route.path}
-                            element={route.element}
-                        />
-                    ))
-                }
-            </Route>
-        </>
-    )
-);
-export default router
+    return routes;
+}

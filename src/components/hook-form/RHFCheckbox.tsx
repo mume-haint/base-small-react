@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Controller, useFormContext} from 'react-hook-form';
 // @mui
 import {Checkbox, FormControlLabel, FormControlLabelProps, FormGroup} from '@mui/material';
+import {FormHelperText} from "~/@mui/material";
 
 // ----------------------------------------------------------------------
 
@@ -19,7 +20,17 @@ export function RHFCheckbox({ name, label = '', ...other }: RHFCheckboxProps) {
                 <Controller
                     name={name}
                     control={control}
-                    render={({ field }) => <Checkbox {...field} checked={field.value} />}
+                    render={({ field , fieldState: {error}}) =>
+                        <>
+                            <Checkbox {...field} checked={field.value} />
+                            {!!error && (
+                                <FormHelperText error sx={{ px: 2 }}>
+                                    {error.message}
+                                </FormHelperText>
+                            )}
+                        </>
+
+            }
                 />
             }
             label={label}
