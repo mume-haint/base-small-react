@@ -6,6 +6,7 @@ import Dashboard from "src/pages/Dashboard.tsx";
 import Posts from "src/pages/Posts.tsx";
 import ReduxProfile from "src/pages/ReduxProfile.tsx";
 import RHFPage from "src/pages/RHFPage.tsx";
+import ComponentList from "src/pages/ComponentList.tsx";
 
 
 export default function Router() {
@@ -23,6 +24,7 @@ export default function Router() {
                 { path: 'posts', element: <Posts /> },
                 { path: 'redux-profile', element: <ReduxProfile /> },
                 { path: 'rhf-page', element: <RHFPage /> },
+                { path: 'component', element: <ComponentList /> },
             ],
         },
         {

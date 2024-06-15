@@ -28,6 +28,11 @@ const navConfig = [
         icon: icon('ic_blog'),
     },
     {
+        title: 'Component',
+        path: '/component',
+        icon: icon('ic_blog'),
+    },
+    {
         title: 'Not found',
         path: '/404',
         icon: icon('ic_disabled'),

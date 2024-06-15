@@ -1,11 +1,9 @@
-import axios from './base.ts'
-
 export async function login(username: string, password: string) {
     // return axios.post('/login', {params: {username, password}});
     const fakeResponse = {
         data: {
             username: username,
-            display_name: `${username} 213`,
+            display_name: `${username} ${password}`,
             avatar: 'Fake User',
         },
         accessToken: 'testaccess toekm',
@@ -14,7 +12,8 @@ export async function login(username: string, password: string) {
     };
 
     return new Promise((resolve) => {
-        setTimeout(() => resolve(fakeResponse), 2000); // Simulate network latency
+        // Simulate network latency
+        setTimeout(() => resolve(fakeResponse), 2000);
     });
 }
 
@@ -31,6 +30,7 @@ export async function profile() {
     };
 
     return new Promise((resolve) => {
-        setTimeout(() => resolve(fakeResponse), 500); // Simulate network latency
+        // Simulate network latency
+        setTimeout(() => resolve(fakeResponse), 2000);
     });
 }
