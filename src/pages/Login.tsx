@@ -24,12 +24,13 @@ import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {loginUser} from "src/redux/slices/authSlice.ts";
 import {RHFFormProvider, RHFText} from "src/components/hook-form";
+import {AppDispatch} from "src/redux/store.ts";
 
 // ----------------------------------------------------------------------
 
-const LoginView: React.FC = () => {
+const LoginView = () => {
     const theme = useTheme<Theme>();
-    const dispatch = useDispatch();
+    const dispatch = useDispatch<AppDispatch>();
     const RHFLoginSchema = Yup.object().shape({
         username: Yup.string().required('Tên đăng nhập không được để trống'),
         password: Yup.string().required('Password không được để trống'),

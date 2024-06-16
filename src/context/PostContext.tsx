@@ -1,6 +1,6 @@
 import {createContext, PropsWithChildren, useContext, useEffect, useReducer} from 'react';
 import {Post} from "../types/post.ts";
-import {getPostDemo} from "../api/demo.ts";
+import {getContextPosts} from "../api/context-posts.ts";
 import {AxiosResponse} from "axios";
 
 // ----------------------------------------------------------------------
@@ -109,7 +109,7 @@ export function PostProvider({ children }: PropsWithChildren) {
 
     useEffect(() => {
         const initialize = async () => {
-            const res: AxiosResponse<Post[]> = await getPostDemo();
+            const res: AxiosResponse<Post[]> = await getContextPosts();
             dispatch({
                 type: PostContextAction.INIT,
                 payload: {
