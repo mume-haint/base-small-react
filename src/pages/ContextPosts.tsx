@@ -1,8 +1,8 @@
-import PostTable from "../components/post/PostTable.tsx";
+import PostTable from "src/page-section/context-posts/PostTable.tsx";
 import {PostProvider} from "../context/PostContext.tsx";
-import PostCreateForm from "../components/post/PostCreateForm.tsx";
+import PostCreateForm from "src/page-section/context-posts/PostCreateForm.tsx";
 
-export default function Posts() {
+export default function ContextPosts() {
 
 
     return (

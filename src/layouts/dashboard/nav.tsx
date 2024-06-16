@@ -7,8 +7,8 @@ import {alpha} from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import ListItemButton from '@mui/material/ListItemButton';
 
-import {usePathname} from 'src/routes/hooks';
-import {RouterLink} from 'src/routes/components';
+import {usePathname} from 'src/hooks';
+import {RouterLink} from 'src/components/router-link';
 
 import Logo from 'src/components/logo';
 import navConfig from './config-navigation';

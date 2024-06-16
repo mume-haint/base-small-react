@@ -13,12 +13,12 @@ const navConfig = [
         icon: icon('ic_analytics'),
     },
     {
-        title: 'demo',
+        title: 'context post',
         path: '/posts',
         icon: icon('ic_user'),
     },
     {
-        title: 'profile',
+        title: 'redux profile',
         path: '/redux-profile',
         icon: icon('ic_cart'),
     },
@@ -28,7 +28,7 @@ const navConfig = [
         icon: icon('ic_blog'),
     },
     {
-        title: 'Component',
+        title: 'MUI component',
         path: '/component',
         icon: icon('ic_blog'),
     },

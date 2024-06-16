@@ -1,38 +1,41 @@
-import * as React from 'react';
+import {SyntheticEvent, useState} from "react";
 import Button from '@mui/material/Button';
-import Snackbar from '@mui/material/Snackbar';
+import Snackbar, {SnackbarCloseReason} from '@mui/material/Snackbar';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 
 export default function SnackbarEx() {
-    const [open, setOpen] = React.useState(false);
+    const [open, setOpen] = useState(false);
 
     const handleClick = () => {
         setOpen(true);
     };
 
-    const handleClose = (event, reason) => {
+    const handleClose = (_event: Event | SyntheticEvent<unknown, Event>, reason: SnackbarCloseReason) => {
         if (reason === 'clickaway') {
             return;
         }
-
         setOpen(false);
     };
 
+    const handleUndo = () => {
+        setOpen(false);
+    }
+
     const action = (
-        <React.Fragment>
-            <Button color="secondary" size="small" onClick={handleClose}>
+        <>
+            <Button color="secondary" size="small" onClick={handleUndo}>
                 UNDO
             </Button>
             <IconButton
                 size="small"
                 aria-label="close"
                 color="inherit"
-                onClick={handleClose}
+                onClick={handleUndo}
             >
                 <CloseIcon fontSize="small" />
             </IconButton>
-        </React.Fragment>
+        </>
     );
 
     return (

@@ -3,7 +3,7 @@ import Box, {BoxProps} from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import {Theme, useTheme} from '@mui/material/styles';
 
-import {RouterLink} from 'src/routes/components';
+import {RouterLink} from 'src/components/router-link';
 
 interface LogoProps extends BoxProps {
     disabledLink?: boolean;

@@ -12,7 +12,7 @@ import LoadingButton from '@mui/lab/LoadingButton';
 import { alpha, useTheme, Theme } from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
 
-import { useRouter } from 'src/routes/hooks';
+import { useRouter } from 'src/hooks';
 
 import { bgGradient } from 'src/theme/css';
 

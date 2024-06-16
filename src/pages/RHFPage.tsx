@@ -6,7 +6,7 @@ import {yupResolver} from '@hookform/resolvers/yup';
 // @mui
 import {Button, Card, Grid, Stack, Typography} from '@mui/material';
 // routes
-// components
+// router-link
 import {
     RHFCheckbox,
     RHFFormProvider,

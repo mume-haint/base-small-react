@@ -1,6 +1,6 @@
 import {Button, Stack, Typography} from "@mui/material";
-import RHFText from "../hook-form/RHFText.tsx";
-import RHFFormProvider from "../hook-form/RHFFormProvider.tsx";
+import RHFText from "../../components/hook-form/RHFText.tsx";
+import RHFFormProvider from "../../components/hook-form/RHFFormProvider.tsx";
 import {Post} from "../../types/post.ts";
 import * as Yup from "yup";
 import {useForm} from "react-hook-form";
