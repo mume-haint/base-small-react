@@ -1,4 +1,4 @@
-import {useState} from "react";
+import {ReactNode, useState} from "react";
 import Box from '@mui/material/Box';
 import Stepper from '@mui/material/Stepper';
 import Step from '@mui/material/Step';
@@ -9,14 +9,14 @@ import Typography from '@mui/material/Typography';
 const steps = ['Select campaign settings', 'Create an ad group', 'Create an ad'];
 
 export default function StepperEx() {
-    const [activeStep, setActiveStep] = useState(0);
-    const [skipped, setSkipped] = useState(new Set());
+    const [activeStep, setActiveStep] = useState<number>(0);
+    const [skipped, setSkipped] = useState<Set<number>>(new Set());
 
-    const isStepOptional = (step) => {
+    const isStepOptional = (step: number) => {
         return step === 1;
     };
 
-    const isStepSkipped = (step) => {
+    const isStepSkipped = (step: number) => {
         return skipped.has(step);
     };
 
@@ -37,8 +37,6 @@ export default function StepperEx() {
 
     const handleSkip = () => {
         if (!isStepOptional(activeStep)) {
-            // You probably want to guard against something like this,
-            // it should never occur unless someone's actively trying to break something.
             throw new Error("You can't skip a step that isn't optional.");
         }
 
@@ -58,8 +56,8 @@ export default function StepperEx() {
         <Box sx={{ width: '100%' }}>
             <Stepper activeStep={activeStep}>
                 {steps.map((label, index) => {
-                    const stepProps = {};
-                    const labelProps = {};
+                    const stepProps: { completed?: boolean } = {};
+                    const labelProps: { optional?: ReactNode } = {};
                     if (isStepOptional(index)) {
                         labelProps.optional = (
                             <Typography variant="caption">Optional</Typography>

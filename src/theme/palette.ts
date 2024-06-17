@@ -1,4 +1,5 @@
 import { alpha } from '@mui/material/styles';
+import {PaletteMode} from "~/@mui/material";
 
 // ----------------------------------------------------------------------
 
@@ -104,7 +105,7 @@ const base = {
 export function palette() {
   return {
     ...base,
-    mode: 'light',
+    mode: 'light' as PaletteMode,
     text: {
       primary: grey[800],
       secondary: grey[600],

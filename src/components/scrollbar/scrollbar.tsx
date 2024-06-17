@@ -1,15 +1,15 @@
 import {forwardRef, ReactNode, Ref} from 'react';
 
-import {BoxProps} from '@mui/material/Box';
 
 import {StyledRootScrollbar, StyledScrollbar} from './styles';
+import {Props as SimpleBarProps} from 'simplebar-react';
 
-interface ScrollbarProps extends BoxProps {
+interface ScrollbarProps extends SimpleBarProps {
     children?: ReactNode;
 }
 
 const Scrollbar = forwardRef(function Scrollbar(
-    { children, sx, ...other }: ScrollbarProps,
+    { children, ...other }: ScrollbarProps,
     ref: Ref<HTMLDivElement>
 ) {
     return (
@@ -19,7 +19,6 @@ const Scrollbar = forwardRef(function Scrollbar(
                     ref,
                 }}
                 clickOnTrack={false}
-                sx={sx}
                 {...other}
             >
                 {children}

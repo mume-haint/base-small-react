@@ -1,12 +1,12 @@
 import CssBaseline from '@mui/material/CssBaseline';
-import { useMemo, ReactNode } from 'react';
-import { ThemeProvider as MUIThemeProvider, Theme } from '@mui/material/styles';
+import {ReactNode, useMemo} from 'react';
+import {ThemeOptions, ThemeProvider as MUIThemeProvider} from '@mui/material/styles';
 
-import { palette } from './palette';
-import { shadows } from './shadows';
-import { overrides } from './overrides';
-import { typography } from './typography';
-import { customShadows } from './custom-shadows.js';
+import {palette} from './palette';
+import {shadows} from './shadows';
+import {overrides} from './overrides';
+import {typography} from './typography';
+import {customShadows} from './custom-shadows.js';
 import {createTheme} from "@mui/material";
 
 interface ThemeProviderProps {
@@ -14,7 +14,7 @@ interface ThemeProviderProps {
 }
 
 export default function ThemeProvider({ children }: ThemeProviderProps) {
-    const memoizedValue = useMemo(
+    const memoizedValue: ThemeOptions = useMemo(
         () => ({
             palette: palette(),
             typography,
@@ -25,9 +25,8 @@ export default function ThemeProvider({ children }: ThemeProviderProps) {
         []
     );
 
-    const theme: Theme = createTheme(memoizedValue);
+    const theme = createTheme(memoizedValue);
 
-    // Assuming overrides function returns a ThemeOptions object
     theme.components = overrides(theme);
 
     return (

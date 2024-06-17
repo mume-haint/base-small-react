@@ -52,6 +52,8 @@ export default function RHFPage() {
     };
 
     const methods = useForm<RHFFormProps>({
+        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+        // @ts-expect-error
         resolver: yupResolver(RHFPageSchema),
         defaultValues,
     });

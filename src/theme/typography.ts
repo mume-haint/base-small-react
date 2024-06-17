@@ -1,14 +1,20 @@
 // ----------------------------------------------------------------------
 
-export function remToPx(value) {
+export function remToPx(value: string): number {
   return Math.round(parseFloat(value) * 16);
 }
 
-export function pxToRem(value) {
+export function pxToRem(value: number): string {
   return `${value / 16}rem`;
 }
 
-export function responsiveFontSizes({ sm, md, lg }) {
+interface ResponsiveFontSizes {
+  sm: number;
+  md: number;
+  lg: number;
+}
+
+export function responsiveFontSizes({ sm, md, lg }: ResponsiveFontSizes): Record<string, Record<string, string>> {
   return {
     '@media (min-width:600px)': {
       fontSize: pxToRem(sm),
@@ -22,12 +28,41 @@ export function responsiveFontSizes({ sm, md, lg }) {
   };
 }
 
-export const primaryFont = 'Public Sans, sans-serif';
-export const secondaryFont = 'Barlow, sans-serif';
+export const primaryFont: string = 'Public Sans, sans-serif';
+export const secondaryFont: string = 'Barlow, sans-serif';
 
 // ----------------------------------------------------------------------
 
-export const typography = {
+interface TypographyOptions {
+  fontFamily: string;
+  fontSecondaryFamily: string;
+  fontWeightRegular: number;
+  fontWeightMedium: number;
+  fontWeightSemiBold: number;
+  fontWeightBold: number;
+  h1: TypographyVariant;
+  h2: TypographyVariant;
+  h3: TypographyVariant;
+  h4: TypographyVariant;
+  h5: TypographyVariant;
+  h6: TypographyVariant;
+  subtitle1: TypographyVariant;
+  subtitle2: TypographyVariant;
+  body1: TypographyVariant;
+  body2: TypographyVariant;
+  caption: TypographyVariant;
+  overline: TypographyVariant;
+  button: TypographyVariant;
+}
+
+interface TypographyVariant {
+  fontWeight: number;
+  lineHeight: number | string;
+  fontSize: string;
+  [key: string]: unknown;
+}
+
+export const typography: TypographyOptions = {
   fontFamily: primaryFont,
   fontSecondaryFamily: secondaryFont,
   fontWeightRegular: 400,
@@ -81,14 +116,17 @@ export const typography = {
     fontSize: pxToRem(14),
   },
   body1: {
+    fontWeight: 400,
     lineHeight: 1.5,
     fontSize: pxToRem(16),
   },
   body2: {
+    fontWeight: 400,
     lineHeight: 22 / 14,
     fontSize: pxToRem(14),
   },
   caption: {
+    fontWeight: 400,
     lineHeight: 1.5,
     fontSize: pxToRem(12),
   },

@@ -1,7 +1,10 @@
+import React from 'react';
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 
-const preventDefault = (event) => event.preventDefault();
+const preventDefault = (event: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    event.preventDefault();
+};
 
 export default function LinkEx() {
     return (

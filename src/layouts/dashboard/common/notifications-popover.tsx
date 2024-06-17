@@ -234,7 +234,7 @@ const NotificationsPopover: React.FC = () => {
 
                 <Divider sx={{ borderStyle: 'dashed' }} />
 
-                <Scrollbar sx={{ height: { xs: 340, sm: 'auto' } }}>
+                <Scrollbar className="h-[340px] sm:h-auto">
                     <List
                         disablePadding
                         subheader={

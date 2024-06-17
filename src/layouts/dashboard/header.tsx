@@ -11,14 +11,23 @@ import { NAV, HEADER } from './config-layout';
 import AccountPopover from './common/account-popover';
 import LanguagePopover from './common/language-popover.tsx';
 import NotificationsPopover from './common/notifications-popover';
+import IconButton from "@mui/material/IconButton";
+import Iconify from "src/components/iconify";
 
 // ----------------------------------------------------------------------
 
-const Header = () => {
+interface HeaderProps {
+    onOpenNav: () => void
+}
+
+const Header = ({ onOpenNav }: HeaderProps) => {
     const theme: Theme = useTheme();
 
     const renderContent = (
         <>
+            <IconButton onClick={onOpenNav} sx={{ mr: 1 }}>
+                <Iconify icon="eva:menu-2-fill" />
+            </IconButton>
 
             <Box sx={{ flexGrow: 1 }} />
 

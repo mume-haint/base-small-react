@@ -1,11 +1,11 @@
-import * as React from 'react';
 import Box from '@mui/material/Box';
 import Popper from '@mui/material/Popper';
+import {useState, MouseEvent} from "react";
 
 export default function PopperEx() {
-    const [anchorEl, setAnchorEl] = React.useState(null);
+    const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
 
-    const handleClick = (event) => {
+    const handleClick = (event: MouseEvent<HTMLButtonElement>) => {
         setAnchorEl(anchorEl ? null : event.currentTarget);
     };
 

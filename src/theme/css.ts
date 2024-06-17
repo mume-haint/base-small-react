@@ -1,16 +1,22 @@
-import { alpha } from '@mui/material/styles';
-import { dividerClasses } from '@mui/material/Divider';
-import { checkboxClasses } from '@mui/material/Checkbox';
-import { menuItemClasses } from '@mui/material/MenuItem';
-import { autocompleteClasses } from '@mui/material/Autocomplete';
+import {alpha, Theme} from '@mui/material/styles';
+import {dividerClasses} from '@mui/material/Divider';
+import {checkboxClasses} from '@mui/material/Checkbox';
+import {menuItemClasses} from '@mui/material/MenuItem';
+import {autocompleteClasses} from '@mui/material/Autocomplete';
 
 // ----------------------------------------------------------------------
 
-export const paper = ({ theme, bgcolor, dropdown }) => ({
+interface PaperType {
+  theme: Theme,
+  bgcolor: string,
+  dropdown: boolean
+}
+
+export const paper = ({ theme, bgcolor, dropdown }: PaperType) => ({
   ...bgBlur({
     blur: 20,
     opacity: 0.9,
-    color: theme.palette.background.paper,
+    color: theme?.palette?.background?.paper,
     ...(!!bgcolor && {
       color: bgcolor,
     }),
@@ -23,15 +29,14 @@ export const paper = ({ theme, bgcolor, dropdown }) => ({
     backgroundPosition: 'top left, right bottom',
   }),
   ...(dropdown && {
-    padding: theme.spacing(0.5),
-    boxShadow: theme.customShadows.dropdown,
-    borderRadius: theme.shape.borderRadius * 1.25,
+    padding: theme?.spacing(0.5),
+    borderRadius: theme?.shape?.borderRadius * 1.25,
   }),
 });
 
 // ----------------------------------------------------------------------
 
-export const menuItem = (theme) => ({
+export const menuItem = (theme: Theme) => ({
   ...theme.typography.body2,
   padding: theme.spacing(0.75, 1),
   borderRadius: theme.shape.borderRadius * 0.75,
@@ -39,7 +44,7 @@ export const menuItem = (theme) => ({
     marginBottom: 4,
   },
   [`&.${menuItemClasses.selected}`]: {
-    fontWeight: theme.typography.fontWeightSemiBold,
+    fontWeight: theme.typography.fontWeightBold,
     backgroundColor: theme.palette.action.selected,
     '&:hover': {
       backgroundColor: theme.palette.action.hover,
@@ -63,7 +68,7 @@ export const menuItem = (theme) => ({
 
 // ----------------------------------------------------------------------
 
-export function bgBlur(props) {
+export function bgBlur(props: { color: string; blur: number; opacity: number; imgUrl?: string; }) {
   const color = props?.color || '#000000';
   const blur = props?.blur || 6;
   const opacity = props?.opacity || 0.8;
@@ -97,7 +102,7 @@ export function bgBlur(props) {
 
 // ----------------------------------------------------------------------
 
-export function bgGradient(props) {
+export function bgGradient(props: { color: string; imgUrl: string; direction?: string; startColor?: string; endColor?: string; }) {
   const direction = props?.direction || 'to bottom';
   const startColor = props?.startColor;
   const endColor = props?.endColor;
@@ -122,7 +127,7 @@ export function bgGradient(props) {
 
 // ----------------------------------------------------------------------
 
-export function textGradient(value) {
+export function textGradient(value: string) {
   return {
     background: `-webkit-linear-gradient(${value})`,
     WebkitBackgroundClip: 'text',

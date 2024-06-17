@@ -36,11 +36,11 @@ const initialState: AuthState = {
 
 export const authProfile = createAsyncThunk<AuthResponse, unknown>('auth/profile', async (_data: unknown, thunkAPI) => {
     try {
-        const response = await profile();
+        const response = await profile() as AuthResponse;
         if (response?.error) {
             throw new Error('Fetch profile error');
         }
-        return response?.data;
+        return response;
     } catch (error) {
         return thunkAPI.rejectWithValue('Failed to fetch user');
     }
@@ -48,12 +48,12 @@ export const authProfile = createAsyncThunk<AuthResponse, unknown>('auth/profile
 
 export const loginUser = createAsyncThunk<AuthResponse, LoginFormProps>('auth/login', async (data: LoginFormProps, thunkAPI) => {
     try {
-        const response = await login(data.username, data.password);
+        const response = await login(data.username, data.password) as AuthResponse;
         if (response?.error) {
             throw new Error('Fetch profile error');
         }
         localStorage.setItem('accessToken', response?.accessToken)
-        return response?.data;
+        return response;
     } catch (error) {
         return thunkAPI.rejectWithValue('Failed to login');
     }
