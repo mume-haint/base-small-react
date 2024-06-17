@@ -1,15 +1,16 @@
 import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
-import { NAV, HEADER } from './config-layout';
+import {HEADER} from './config-layout';
+import {ReactNode} from "react";
 
 // ----------------------------------------------------------------------
 
 const SPACING = 8;
 
 interface MainProps {
-    children: React.ReactNode;
+    children: ReactNode;
     sx?: object;
-    [key: string]: any;
+    [key: string]: unknown;
 }
 
 export default function Main({ children, sx, ...other }: MainProps) {

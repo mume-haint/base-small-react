@@ -15,6 +15,7 @@ interface AuthResponse {
         display_name: string,
         avatar: string,
     },
+    accessToken: string,
     status: number,
     error: boolean,
 }
@@ -33,7 +34,7 @@ const initialState: AuthState = {
 
 
 
-export const authProfile = createAsyncThunk<AuthResponse, unknown>('auth/profile', async (data: unknown, thunkAPI) => {
+export const authProfile = createAsyncThunk<AuthResponse, unknown>('auth/profile', async (_data: unknown, thunkAPI) => {
     try {
         const response = await profile();
         if (response?.error) {
@@ -81,22 +82,22 @@ export const authSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder
-            .addCase(authProfile.pending, (state) => {
+            .addCase(authProfile.pending, () => {
 
             })
             .addCase(authProfile.fulfilled, (state, action) => {
-                state.user = action.payload;
+                state.user = action.payload.data;
             })
-            .addCase(authProfile.rejected, (state, action) => {
+            .addCase(authProfile.rejected, () => {
 
             })
-            .addCase(loginUser.pending, (state) => {
+            .addCase(loginUser.pending, () => {
 
             })
             .addCase(loginUser.fulfilled, (state, action) => {
-                state.user = action.payload;
+                state.user = action.payload.data;
             })
-            .addCase(loginUser.rejected, (state, action) => {
+            .addCase(loginUser.rejected, () => {
 
             });
 

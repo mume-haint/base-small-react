@@ -1,14 +1,17 @@
 // form
 import {Controller, useFormContext} from 'react-hook-form';
 // @mui
-import {DatePicker, LocalizationProvider} from '@mui/x-date-pickers';
+import {DatePicker, DatePickerProps, LocalizationProvider} from '@mui/x-date-pickers';
 import {AdapterDayjs} from "@mui/x-date-pickers/AdapterDayjs";
 import {FormHelperText} from "@mui/material";
+import {Dayjs} from "dayjs";
 
 // ----------------------------------------------------------------------
 
-
-export default function RHFDate({ name, ...other }) {
+interface RHFDateProps extends Omit<DatePickerProps<Dayjs>, 'name' | 'control'> {
+    name: string;
+}
+export default function RHFDate({ name, ...other }: RHFDateProps) {
     const { control } = useFormContext();
 
     return (

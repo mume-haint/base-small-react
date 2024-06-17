@@ -1,8 +1,8 @@
 import PropTypes from 'prop-types';
 // form
-import { useFormContext, Controller } from 'react-hook-form';
+import {Controller, useFormContext} from 'react-hook-form';
 // @mui
-import { Switch, FormControlLabel } from '@mui/material';
+import {FormControlLabel, FormControlLabelProps, Switch} from '@mui/material';
 import {FormHelperText} from "~/@mui/material";
 
 // ----------------------------------------------------------------------
@@ -11,13 +11,11 @@ RHFSwitch.propTypes = {
     name: PropTypes.string,
 };
 
-interface Props {
+interface RHFSwitchProps extends Omit<FormControlLabelProps, 'name' | 'label' | 'control'>{
     name: string,
     label: string
 }
-
-
-export default function RHFSwitch({ name, label, ...other }: Props) {
+export default function RHFSwitch({ name, label, ...other }: RHFSwitchProps) {
     const { control } = useFormContext();
 
     return (

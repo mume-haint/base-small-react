@@ -1,5 +1,4 @@
 import {forwardRef, ReactNode, Ref} from 'react';
-import PropTypes from 'prop-types';
 
 import {BoxProps} from '@mui/material/Box';
 
@@ -13,8 +12,6 @@ const Scrollbar = forwardRef(function Scrollbar(
     { children, sx, ...other }: ScrollbarProps,
     ref: Ref<HTMLDivElement>
 ) {
-
-
     return (
         <StyledRootScrollbar>
             <StyledScrollbar
@@ -30,11 +27,5 @@ const Scrollbar = forwardRef(function Scrollbar(
         </StyledRootScrollbar>
     );
 });
-
-// PropTypes for type checking during development (optional, but useful)
-Scrollbar.propTypes = {
-    children: PropTypes.node,
-    sx: PropTypes.object,
-};
 
 export default Scrollbar;

@@ -1,10 +1,15 @@
-import * as React from 'react';
-import PropTypes from 'prop-types';
+import {ReactNode, SyntheticEvent, useState} from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Box from '@mui/material/Box';
 
-function CustomTabPanel(props) {
+interface CustomTabPanelProps {
+    children?: ReactNode;
+    index: number;
+    value: number;
+}
+
+function CustomTabPanel(props: CustomTabPanelProps) {
     const { children, value, index, ...other } = props;
 
     return (
@@ -20,13 +25,7 @@ function CustomTabPanel(props) {
     );
 }
 
-CustomTabPanel.propTypes = {
-    children: PropTypes.node,
-    index: PropTypes.number.isRequired,
-    value: PropTypes.number.isRequired,
-};
-
-function a11yProps(index) {
+function a11yProps(index: number) {
     return {
         id: `simple-tab-${index}`,
         'aria-controls': `simple-tabpanel-${index}`,
@@ -34,9 +33,9 @@ function a11yProps(index) {
 }
 
 export default function TabsEx() {
-    const [value, setValue] = React.useState(0);
+    const [value, setValue] = useState<number>(0);
 
-    const handleChange = (event, newValue) => {
+    const handleChange = (_event: SyntheticEvent, newValue: number) => {
         setValue(newValue);
     };
 

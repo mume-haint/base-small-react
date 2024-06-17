@@ -1,8 +1,9 @@
+import {MouseEvent} from 'react'
 import Typography from '@mui/material/Typography';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import Link from '@mui/material/Link';
 
-function handleClick(event) {
+function handleClick(event: MouseEvent<HTMLElement>) {
     event.preventDefault();
     console.info('You clicked a breadcrumb.');
 }

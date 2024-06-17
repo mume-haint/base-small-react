@@ -12,9 +12,9 @@ import MailIcon from '@mui/icons-material/Mail';
 import {useState} from "react";
 
 export default function DrawerEx() {
-    const [open, setOpen] = useState(false);
+    const [open, setOpen] = useState<boolean>(false);
 
-    const toggleDrawer = (newOpen) => () => {
+    const toggleDrawer = (newOpen: boolean) => () => {
         setOpen(newOpen);
     };
 

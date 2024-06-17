@@ -1,7 +1,8 @@
 import {usePostProvider} from "../../context/PostContext.tsx";
-import {Box, Button, IconButton, Table, TableBody, TableCell, TableHead, TableRow, TableSortLabel} from "@mui/material";
+import {Box, IconButton, Table, TableBody, TableCell, TableHead, TableRow, TableSortLabel} from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+
 const TABLE_HEAD = [
     { id: 'id', label: 'ID', alignRight: false, sortable: true },
     { id: 'userId', label: 'userId', alignRight: false, sortable: true },

@@ -6,12 +6,12 @@ import {TextField, TextFieldProps} from '@mui/material';
 // ----------------------------------------------------------------------
 
 
-interface Props extends Omit<TextFieldProps, 'name'> {
+interface RHFTextProps extends Omit<TextFieldProps, 'name'> {
     name: string;
 }
 
 
-export default function RHFText({ name, ...other }: Props) {
+export default function RHFText({ name, ...other }: RHFTextProps) {
     const { control } = useFormContext();
 
     return (

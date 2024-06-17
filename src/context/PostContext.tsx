@@ -7,7 +7,7 @@ import {AxiosResponse} from "axios";
 interface PostContextData {
     data: Post[],
     _page: number,
-    _order: string,
+    _order: 'asc' | 'desc' | undefined,
     _sort: string,
     _limit: number,
     total: number

@@ -22,15 +22,17 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import FilterListIcon from '@mui/icons-material/FilterList';
 import { visuallyHidden } from '@mui/utils';
 
-function createData(id, name, calories, fat, carbs, protein) {
-    return {
-        id,
-        name,
-        calories,
-        fat,
-        carbs,
-        protein,
-    };
+interface Data {
+    id: number;
+    name: string;
+    calories: number;
+    fat: number;
+    carbs: number;
+    protein: number;
+}
+
+function createData(id: number, name: string, calories: number, fat: number, carbs: number, protein: number): Data {
+    return { id, name, calories, fat, carbs, protein };
 }
 
 const rows = [
@@ -49,7 +51,7 @@ const rows = [
     createData(13, 'Oreo', 437, 18.0, 63, 4.0),
 ];
 
-function descendingComparator(a, b, orderBy) {
+function descendingComparator<T>(a: T, b: T, orderBy: keyof T) {
     if (b[orderBy] < a[orderBy]) {
         return -1;
     }
@@ -59,18 +61,17 @@ function descendingComparator(a, b, orderBy) {
     return 0;
 }
 
-function getComparator(order, orderBy) {
+function getComparator<Key extends keyof Data>(
+    order: 'asc' | 'desc',
+    orderBy: Key,
+): (a: { [key in Key]: number | string }, b: { [key in Key]: number | string }) => number {
     return order === 'desc'
         ? (a, b) => descendingComparator(a, b, orderBy)
         : (a, b) => -descendingComparator(a, b, orderBy);
 }
 
-// Since 2020 all major browsers ensure sort stability with Array.prototype.sort().
-// stableSort() brings sort stability to non-modern browsers (notably IE11). If you
-// only support modern browsers you can replace stableSort(exampleArray, exampleComparator)
-// with exampleArray.slice().sort(exampleComparator)
-function stableSort(array, comparator) {
-    const stabilizedThis = array.map((el, index) => [el, index]);
+function stableSort<T>(array: T[], comparator: (a: T, b: T) => number) {
+    const stabilizedThis = array.map((el, index) => [el, index] as [T, number]);
     stabilizedThis.sort((a, b) => {
         const order = comparator(a[0], b[0]);
         if (order !== 0) {
@@ -81,7 +82,14 @@ function stableSort(array, comparator) {
     return stabilizedThis.map((el) => el[0]);
 }
 
-const headCells = [
+interface HeadCell {
+    id: keyof Data;
+    numeric: boolean;
+    disablePadding: boolean;
+    label: string;
+}
+
+const headCells: readonly HeadCell[] = [
     {
         id: 'name',
         numeric: false,
@@ -114,12 +122,21 @@ const headCells = [
     },
 ];
 
-function EnhancedTableHead(props) {
-    const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } =
-        props;
-    const createSortHandler = (property) => (event) => {
-        onRequestSort(event, property);
-    };
+interface EnhancedTableProps {
+    onSelectAllClick: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    order: 'asc' | 'desc';
+    orderBy: string;
+    numSelected: number;
+    rowCount: number;
+    onRequestSort: (event: React.MouseEvent<unknown>, property: keyof Data) => void;
+}
+
+function EnhancedTableHead(props: EnhancedTableProps) {
+    const { onSelectAllClick, order, orderBy, numSelected, rowCount, onRequestSort } = props;
+    const createSortHandler =
+        (property: keyof Data) => (event: React.MouseEvent<unknown>) => {
+            onRequestSort(event, property);
+        };
 
     return (
         <TableHead>
@@ -170,7 +187,11 @@ EnhancedTableHead.propTypes = {
     rowCount: PropTypes.number.isRequired,
 };
 
-function EnhancedTableToolbar(props) {
+interface EnhancedTableToolbarProps {
+    numSelected: number;
+}
+
+const EnhancedTableToolbar = (props: EnhancedTableToolbarProps) => {
     const { numSelected } = props;
 
     return (
@@ -219,27 +240,30 @@ function EnhancedTableToolbar(props) {
             )}
         </Toolbar>
     );
-}
+};
 
 EnhancedTableToolbar.propTypes = {
     numSelected: PropTypes.number.isRequired,
 };
 
 export default function TableEx() {
-    const [order, setOrder] = React.useState('asc');
-    const [orderBy, setOrderBy] = React.useState('calories');
-    const [selected, setSelected] = React.useState([]);
+    const [order, setOrder] = React.useState<'asc' | 'desc'>('asc');
+    const [orderBy, setOrderBy] = React.useState<keyof Data>('calories');
+    const [selected, setSelected] = React.useState<readonly number[]>([]);
     const [page, setPage] = React.useState(0);
     const [dense, setDense] = React.useState(false);
     const [rowsPerPage, setRowsPerPage] = React.useState(5);
 
-    const handleRequestSort = (event, property) => {
+    const handleRequestSort = (
+        _event: React.MouseEvent<unknown>,
+        property: keyof Data,
+    ) => {
         const isAsc = orderBy === property && order === 'asc';
         setOrder(isAsc ? 'desc' : 'asc');
         setOrderBy(property);
     };
 
-    const handleSelectAllClick = (event) => {
+    const handleSelectAllClick = (event: React.ChangeEvent<HTMLInputElement>) => {
         if (event.target.checked) {
             const newSelected = rows.map((n) => n.id);
             setSelected(newSelected);
@@ -248,9 +272,9 @@ export default function TableEx() {
         setSelected([]);
     };
 
-    const handleClick = (event, id) => {
+    const handleClick = (_event: React.MouseEvent<unknown>, id: number) => {
         const selectedIndex = selected.indexOf(id);
-        let newSelected = [];
+        let newSelected: readonly number[] = [];
 
         if (selectedIndex === -1) {
             newSelected = newSelected.concat(selected, id);
@@ -267,24 +291,25 @@ export default function TableEx() {
         setSelected(newSelected);
     };
 
-    const handleChangePage = (event, newPage) => {
+    const handleChangePage = (_event: unknown, newPage: number) => {
         setPage(newPage);
     };
 
-    const handleChangeRowsPerPage = (event) => {
+    const handleChangeRowsPerPage = (event: React.ChangeEvent<HTMLInputElement>) => {
         setRowsPerPage(parseInt(event.target.value, 10));
         setPage(0);
     };
 
-    const handleChangeDense = (event) => {
+    const handleChangeDense = (event: React.ChangeEvent<HTMLInputElement>) => {
         setDense(event.target.checked);
     };
 
-    const isSelected = (id) => selected.indexOf(id) !== -1;
+    const isSelected = (id: number) => selected.indexOf(id) !== -1;
 
-    // Avoid a layout jump when reaching the last page with empty rows.
-    const emptyRows =
-        page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0;
+    const emptyRows = React.useMemo(
+        () => (page > 0 ? Math.max(0, (1 + page) * rowsPerPage - rows.length) : 0),
+        [page, rowsPerPage, rows.length]
+    );
 
     const visibleRows = React.useMemo(
         () =>

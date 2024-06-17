@@ -10,7 +10,7 @@ export default function ToggleButtonEx() {
     const [alignment, setAlignment] = React.useState<string | null>('left');
 
     const handleAlignment = (
-        event: React.MouseEvent<HTMLElement>,
+        _event: React.MouseEvent<HTMLElement>,
         newAlignment: string | null,
     ) => {
         setAlignment(newAlignment);
