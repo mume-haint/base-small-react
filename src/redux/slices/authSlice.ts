@@ -20,15 +20,12 @@ interface AuthResponse {
     error: boolean,
 }
 
-const accessToken = window.localStorage.getItem('accessToken');
-
-
 const initialState: AuthState = {
-    isAuthenticated: !!accessToken,
+    isAuthenticated: false,
     user: {
-        username: 'test user',
-        display_name: 'test display user',
-        avatar: 'https://picsum.photos/200/200'
+        username: '',
+        display_name: '',
+        avatar: ''
     }
 }
 
@@ -94,6 +91,8 @@ export const authSlice = createSlice({
             })
             .addCase(authProfile.fulfilled, (state, action) => {
                 state.user = action.payload.data;
+                state.isAuthenticated = true;
+                console.log('extra reducer', state.isAuthenticated)
             })
             .addCase(authProfile.rejected, () => {
 

@@ -8,6 +8,7 @@ import {RouterProvider} from 'react-router-dom';
 import {HelmetProvider} from "react-helmet-async";
 import ThemeProvider from "src/theme";
 import NotistackProvider from "src/components/NotistackProvider.tsx";
+import ReduxProvider from "src/components/ReduxProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <React.StrictMode>
@@ -15,7 +16,9 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
             <ThemeProvider>
                 <NotistackProvider>
                     <Provider store={store}>
-                        <RouterProvider router={router}/>
+                        <ReduxProvider>
+                            <RouterProvider router={router}/>
+                        </ReduxProvider>
                     </Provider>
                 </NotistackProvider>
             </ThemeProvider>
