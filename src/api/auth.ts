@@ -34,3 +34,10 @@ export async function profile() {
         setTimeout(() => resolve(fakeResponse), 2000);
     });
 }
+
+export async function logout() {
+    return new Promise((resolve) => {
+        // Simulate network latency
+        setTimeout(() => resolve('ok'), 2000);
+    });
+}

@@ -1,11 +1,11 @@
 import type {PayloadAction} from '@reduxjs/toolkit'
 import {createAsyncThunk, createSlice} from '@reduxjs/toolkit'
-import {login, profile} from "../../api/auth.ts";
+import {login, logout, profile} from "../../api/auth.ts";
 import {AuthUserData, LoginFormProps} from "../../types/auth.ts";
+import {setAccessToken} from "src/utils/jwt.ts";
 
 export interface AuthState {
-    isAuthenticated: false,
-    isInitialized: false,
+    isAuthenticated: boolean,
     user: AuthUserData
 }
 
@@ -20,19 +20,17 @@ interface AuthResponse {
     error: boolean,
 }
 
+const accessToken = window.localStorage.getItem('accessToken');
 
 
 const initialState: AuthState = {
-    isAuthenticated: false,
-    isInitialized: false,
+    isAuthenticated: !!accessToken,
     user: {
         username: 'test user',
         display_name: 'test display user',
         avatar: 'https://picsum.photos/200/200'
     }
 }
-
-
 
 export const authProfile = createAsyncThunk<AuthResponse, unknown>('auth/profile', async (_data: unknown, thunkAPI) => {
     try {
@@ -52,10 +50,20 @@ export const loginUser = createAsyncThunk<AuthResponse, LoginFormProps>('auth/lo
         if (response?.error) {
             throw new Error('Fetch profile error');
         }
-        localStorage.setItem('accessToken', response?.accessToken)
+        setAccessToken(response?.accessToken);
         return response;
     } catch (error) {
         return thunkAPI.rejectWithValue('Failed to login');
+    }
+});
+
+export const logoutUser = createAsyncThunk<unknown, unknown>('auth/logout', async (_, thunkAPI) => {
+    try {
+        const response = await logout();
+        setAccessToken(null);
+        return response;
+    } catch (error) {
+        return thunkAPI.rejectWithValue('Failed to logout');
     }
 });
 
@@ -65,7 +73,6 @@ export const authSlice = createSlice({
     reducers: {
         init: (state) => {
             state.isAuthenticated = false
-            state.isInitialized = false
             state.user = {
                 username: 'test',
                 display_name: 'test display',
@@ -96,9 +103,17 @@ export const authSlice = createSlice({
             })
             .addCase(loginUser.fulfilled, (state, action) => {
                 state.user = action.payload.data;
+                state.isAuthenticated = true;
             })
             .addCase(loginUser.rejected, () => {
+            })
+            .addCase(logoutUser.pending, () => {
 
+            })
+            .addCase(logoutUser.fulfilled, (state) => {
+                state.isAuthenticated = false;
+            })
+            .addCase(logoutUser.rejected, () => {
             });
 
     },

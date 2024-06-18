@@ -1,6 +1,7 @@
 import {forwardRef, HTMLAttributes} from 'react';
 import {Icon, IconifyIcon} from '@iconify/react';
-import Box, {BoxProps} from '@mui/material/Box';
+import {Box} from '@mui/material';
+import {BoxProps} from "@mui/material/Box";
 
 interface IconifyProps extends HTMLAttributes<SVGSVGElement> {
     icon: string | IconifyIcon;

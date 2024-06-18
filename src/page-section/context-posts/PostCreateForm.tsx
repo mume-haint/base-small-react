@@ -6,6 +6,7 @@ import * as Yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {usePostProvider} from "../../context/PostContext.tsx";
+import {enqueueSnackbar} from "notistack";
 
 export default function PostCreateForm() {
 
@@ -38,7 +39,8 @@ export default function PostCreateForm() {
 
     const onSubmit = async (formData: Post) => {
         try {
-            storePost(formData)
+            enqueueSnackbar('Create post successfully', {variant: 'success', transitionDuration: {enter: 1000, exit: 1000}});
+            storePost(formData);
             reset();
         } catch (error) {
             console.error(error);

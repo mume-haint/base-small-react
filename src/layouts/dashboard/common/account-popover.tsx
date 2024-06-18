@@ -1,17 +1,19 @@
-import { useState } from 'react';
+import {useState} from 'react';
 import Box from '@mui/material/Box';
 import Avatar from '@mui/material/Avatar';
 import Divider from '@mui/material/Divider';
 import Popover from '@mui/material/Popover';
-import { alpha } from '@mui/material/styles';
+import {alpha} from '@mui/material/styles';
 import MenuItem from '@mui/material/MenuItem';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 
 import {useSelector} from "react-redux";
-import {RootState} from "src/redux/store.ts";
+import {AppDispatch, RootState} from "src/redux/store.ts";
+import {useRouter} from "src/hooks";
+import {useDispatch} from "react-redux";
+import {logoutUser} from "src/redux/slices/authSlice.ts";
 
-// Define the type for MENU_OPTIONS
 type MenuOption = {
     label: string;
     icon: string;
@@ -31,14 +33,13 @@ const MENU_OPTIONS: MenuOption[] = [
         icon: 'eva:settings-2-fill',
     },
 ];
-// Define the component props if any
-interface AccountPopoverProps {}
 
-// Component
-const AccountPopover: React.FC<AccountPopoverProps> = () => {
-    const [open, setOpen] = useState<HTMLButtonElement | null>(null); // Define the type for open state
+const AccountPopover = () => {
+    const [open, setOpen] = useState<HTMLButtonElement | null>(null);
     const { user} = useSelector((state: RootState) => state.auth);
+    const dispatch = useDispatch<AppDispatch>();
 
+    const router = useRouter();
     const handleOpen = (event: React.MouseEvent<HTMLButtonElement>) => {
         setOpen(event.currentTarget);
     };
@@ -46,6 +47,11 @@ const AccountPopover: React.FC<AccountPopoverProps> = () => {
     const handleClose = () => {
         setOpen(null);
     };
+
+    const handleLogout = async () => {
+        await dispatch(logoutUser(null));
+        router.push('/login')
+    }
 
     return (
         <>
@@ -109,7 +115,7 @@ const AccountPopover: React.FC<AccountPopoverProps> = () => {
                 <MenuItem
                     disableRipple
                     disableTouchRipple
-                    onClick={handleClose}
+                    onClick={handleLogout}
                     sx={{ typography: 'body2', color: 'error.main', py: 1.5 }}
                 >
                     Logout

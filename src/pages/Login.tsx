@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import * as Yup from 'yup';
-import Box from '@mui/material/Box';
+import {Box} from '@mui/material';
 import Link from '@mui/material/Link';
 import Card from '@mui/material/Card';
 import Stack from '@mui/material/Stack';

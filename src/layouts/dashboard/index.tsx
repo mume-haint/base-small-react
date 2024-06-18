@@ -11,27 +11,22 @@ interface DashboardLayoutProps {
     children: ReactNode;
 }
 
-export default function DashboardLayout({ children }: DashboardLayoutProps) {
+export default function DashboardLayout({children}: DashboardLayoutProps) {
     const [openNav, setOpenNav] = useState(false);
 
     return (
         <>
-            <>
-                <Header onOpenNav={() => setOpenNav(true)} />
+            <Header onOpenNav={() => setOpenNav(true)}/>
+            <Box
+                sx={{
+                    minHeight: 1,
+                    display: 'flex',
+                }}
+            >
+                <Nav openNav={openNav} onCloseNav={() => setOpenNav(false)}/>
 
-                <Box
-                    sx={{
-                        minHeight: 1,
-                        display: 'flex',
-                    }}
-                >
-                    <Nav openNav={openNav} onCloseNav={() => setOpenNav(false)} />
-
-                    <Main>{children}</Main>
-                </Box>
-            </>
-
-
+                <Main>{children}</Main>
+            </Box>
         </>
     );
 }

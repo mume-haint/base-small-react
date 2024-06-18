@@ -1,20 +1,24 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import Router from "./routes";
+import {router} from "./routes";
 import './styles/globals.css'
 import {store} from './redux/store'
 import {Provider} from 'react-redux'
-import ThemeProvider from 'src/theme';
-import { BrowserRouter } from 'react-router-dom';
+import {RouterProvider} from 'react-router-dom';
+import {HelmetProvider} from "react-helmet-async";
+import ThemeProvider from "src/theme";
+import NotistackProvider from "src/components/NotistackProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
-      <ThemeProvider>
-        <Provider store={store}>
-            <BrowserRouter>
-                <Router />
-            </BrowserRouter>
-        </Provider>
-      </ThemeProvider>
-  </React.StrictMode>,
+    <React.StrictMode>
+        <HelmetProvider>
+            <ThemeProvider>
+                <NotistackProvider>
+                    <Provider store={store}>
+                        <RouterProvider router={router}/>
+                    </Provider>
+                </NotistackProvider>
+            </ThemeProvider>
+        </HelmetProvider>
+    </React.StrictMode>,
 )

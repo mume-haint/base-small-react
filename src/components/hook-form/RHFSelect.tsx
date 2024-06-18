@@ -3,7 +3,7 @@ import {Controller, useFormContext} from 'react-hook-form';
 // @mui
 import {TextField, TextFieldProps} from '@mui/material';
 import {ReactNode} from "react";
-import {FormHelperText} from "~/@mui/material";
+import {FormHelperText} from "@mui/material";
 
 // ----------------------------------------------------------------------
 interface RHFSelectProps extends Omit<TextFieldProps, 'name'> {

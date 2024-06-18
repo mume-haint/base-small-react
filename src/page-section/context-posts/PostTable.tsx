@@ -2,6 +2,7 @@ import {usePostProvider} from "../../context/PostContext.tsx";
 import {Box, IconButton, Table, TableBody, TableCell, TableHead, TableRow, TableSortLabel} from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
+import {enqueueSnackbar} from "notistack";
 
 const TABLE_HEAD = [
     { id: 'id', label: 'ID', alignRight: false, sortable: true },
@@ -27,7 +28,10 @@ export default function PostTable() {
 
     const {state, updatePost, deletePost} = usePostProvider();
 
-
+    const handleDelete = (id: number) => {
+        deletePost(id);
+        enqueueSnackbar('Delete post successfully', {variant: 'error'});
+    }
 
     return (
         <div style={{ height: 400, width: '100%' }}>
@@ -74,7 +78,7 @@ export default function PostTable() {
                                 <IconButton onClick={() => {updatePost(id, {id, userId, title, body})}}>
                                     <EditIcon />
                                 </IconButton>
-                                <IconButton onClick={() => {deletePost(id)}} aria-label="delete">
+                                <IconButton onClick={() => handleDelete(id)} aria-label="delete">
                                     <DeleteIcon />
                                 </IconButton>
                             </TableCell>

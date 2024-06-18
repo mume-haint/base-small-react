@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {Controller, useFormContext} from 'react-hook-form';
 // @mui
 import {FormControlLabel, FormControlLabelProps, Switch} from '@mui/material';
-import {FormHelperText} from "~/@mui/material";
+import {FormHelperText} from "@mui/material";
 
 // ----------------------------------------------------------------------
 

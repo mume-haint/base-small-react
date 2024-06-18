@@ -8,9 +8,7 @@ export default function ContextPosts() {
     return (
         <>
             <PostProvider>
-
                 <PostCreateForm />
-
                 <PostTable />
             </PostProvider>
         </>
