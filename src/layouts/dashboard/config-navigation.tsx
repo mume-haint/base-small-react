@@ -30,7 +30,7 @@ const navConfig = [
     {
         title: 'MUI component',
         path: '/component',
-        icon: icon('ic_blog'),
+        icon: icon('ic_lock'),
     },
     {
         title: 'Not found',

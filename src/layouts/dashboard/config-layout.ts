@@ -8,4 +8,5 @@ export const HEADER = {
 
 export const NAV = {
     WIDTH: 280,
+    WIDTH_CLOSE: 140
 };

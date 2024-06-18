@@ -1,13 +1,7 @@
-import Box from '@mui/material/Box';
+import Box, {BoxProps} from '@mui/material/Box';
 import Stack from '@mui/material/Stack';
-import AppBar from '@mui/material/AppBar';
 import Toolbar from '@mui/material/Toolbar';
-import { useTheme, Theme } from '@mui/material/styles';
-
-
-
-
-import { NAV, HEADER } from './config-layout';
+import {Theme, useTheme} from '@mui/material/styles';
 import AccountPopover from './common/account-popover';
 import LanguagePopover from './common/language-popover.tsx';
 import NotificationsPopover from './common/notifications-popover';
@@ -16,52 +10,52 @@ import Iconify from "src/components/iconify";
 
 // ----------------------------------------------------------------------
 
-interface HeaderProps {
-    onOpenNav: () => void
+interface HeaderProps extends BoxProps {
+  onOpenNav: () => void
 }
 
-const Header = ({ onOpenNav }: HeaderProps) => {
-    const theme: Theme = useTheme();
+const Header = ({onOpenNav, ...other}: HeaderProps) => {
+  const theme: Theme = useTheme();
 
-    const renderContent = (
-        <>
-            <IconButton onClick={onOpenNav} sx={{ mr: 1 }}>
-                <Iconify icon="eva:menu-2-fill" />
-            </IconButton>
+  const renderContent = (
+    <>
+      <IconButton onClick={onOpenNav} sx={{mr: 1}}>
+        <Iconify icon="eva:menu-2-fill"/>
+      </IconButton>
 
-            <Box sx={{ flexGrow: 1 }} />
+      <Box sx={{flexGrow: 1}}/>
 
-            <Stack direction="row" alignItems="center" spacing={1}>
-                <LanguagePopover />
-                <NotificationsPopover />
-                <AccountPopover />
-            </Stack>
-        </>
-    );
+      <Stack direction="row" alignItems="center" spacing={1}>
+        <LanguagePopover/>
+        <NotificationsPopover/>
+        <AccountPopover/>
+      </Stack>
+    </>
+  );
 
-    return (
-        <AppBar
-            sx={{
-                boxShadow: 'none',
-                zIndex: theme.zIndex.appBar + 1,
-                transition: theme.transitions.create(['height'], {
-                    duration: theme.transitions.duration.shorter,
-                }),
-                width: `calc(100% - ${NAV.WIDTH + 1}px)`,
-                height: HEADER.H_DESKTOP,
-                bgcolor: 'rgba(203,202,202,0.8)'
-            }}
-        >
-            <Toolbar
-                sx={{
-                    height: 1,
-                    px: 5,
-                }}
-            >
-                {renderContent}
-            </Toolbar>
-        </AppBar>
-    );
+  return (
+    <Box
+      sx={{
+        boxShadow: 'none',
+        zIndex: theme.zIndex.appBar + 1,
+        transition: theme.transitions.create(['height'], {
+          duration: theme.transitions.duration.shorter,
+        }),
+        display: 'block',
+        bgcolor: 'rgba(203,202,202,0.8)'
+      }}
+      {...other}
+    >
+      <Toolbar
+        sx={{
+          height: 1,
+          px: 5,
+        }}
+      >
+        {renderContent}
+      </Toolbar>
+    </Box>
+  );
 };
 
 export default Header;
