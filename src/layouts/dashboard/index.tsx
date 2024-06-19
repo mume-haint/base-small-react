@@ -11,7 +11,7 @@ interface DashboardLayoutProps {
 }
 
 export default function DashboardLayout({children}: DashboardLayoutProps) {
-  const [openNav, setOpenNav] = useState(false);
+  const [openNav, setOpenNav] = useState(true);
 
   return (
     <div className="w-screen h-screen flex">

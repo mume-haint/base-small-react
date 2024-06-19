@@ -66,7 +66,7 @@ import PortalEx from "src/page-section/mui-component/utils/PortalEx.tsx";
 
 export default function MUIComponent() {
     return (
-        <>
+        <div className="p-2 m-2">
             <Box className="bg-gray-100 border-2 p-3 m-3">
                 <Typography variant="h3">Input</Typography>
                 <Box className="p-3 m-3 border-4 border-gray-200 rounded-lg">
@@ -342,7 +342,7 @@ export default function MUIComponent() {
                     <TransitionEx/>
                 </Box>
             </Box>
-        </>
+        </div>
     );
 }
 

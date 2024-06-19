@@ -5,13 +5,25 @@ export async function getContextPosts(params: object = {}) {
 }
 
 export async function storeContextPost(data: object) {
-    return axios.post('/posts', data);
+    return axios.post(
+        '/posts',
+        data,
+        {headers: {
+            "Content-Type": "application/json"
+        }}
+    );
 }
 
-export async function putContextPost(id: string, data: object) {
-    return axios.put(`/posts/${id}`, data);
+export async function updateContextPost(id: number, data: object) {
+    return axios.put(
+        `/posts/${id}`,
+        data,
+        {headers: {
+                "Content-Type": "application/json"
+            }}
+    );
 }
 
-export async function deleteContextPost(id: string) {
+export async function deleteContextPost(id: number) {
     return axios.delete(`/posts/${id}`);
 }

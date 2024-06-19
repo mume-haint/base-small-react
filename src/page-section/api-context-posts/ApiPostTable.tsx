@@ -1,8 +1,10 @@
-import {usePostProvider} from "../../context/PostContext.tsx";
 import {Box, IconButton, Table, TableBody, TableCell, TableHead, TableRow, TableSortLabel} from "@mui/material";
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {enqueueSnackbar} from "notistack";
+import {useAsyncPostProvider} from "src/context/AsyncPostContext.tsx";
+import {Post} from "src/types/post.ts";
+import {useEffect} from "react";
 
 const TABLE_HEAD = [
     { id: 'id', label: 'ID', alignRight: false, sortable: true },
@@ -24,13 +26,37 @@ const visuallyHidden = {
     width: '1px',
 };
 
-export default function PostTable() {
+export default function ApiPostTable() {
 
-    const {state, updatePost, deletePost} = usePostProvider();
+    const {posts,initPosts, updatePost, deletePost} = useAsyncPostProvider();
+    useEffect(() => {
+        fetchPosts();
+    }, []);
 
-    const handleDelete = (id: number) => {
-        deletePost(id);
-        enqueueSnackbar('Delete post successfully', {variant: 'success'});
+    const fetchPosts = async () => {
+        try {
+            await initPosts();
+        } catch (_e) {
+            enqueueSnackbar('Fetch post failed', {variant: 'error'});
+        }
+    }
+
+    const handleUpdate = async (req_id: number, data: Post) => {
+        try {
+            await updatePost(req_id, data);
+            enqueueSnackbar('Update post successfully', {variant: 'success'});
+        } catch (_e) {
+            enqueueSnackbar('Update post failed', {variant: 'error'});
+        }
+    }
+
+    const handleDelete = async (id: number) => {
+        try {
+            await deletePost(id);
+            enqueueSnackbar('Delete post successfully', {variant: 'success'});
+        } catch (_e) {
+            enqueueSnackbar('Delete post failed', {variant: 'error'});
+        }
     }
 
     return (
@@ -45,12 +71,12 @@ export default function PostTable() {
                         >
                             {headCell.sortable ? <TableSortLabel
                                     hideSortIcon
-                                    active={state._sort === headCell.id}
-                                    direction={state._order === headCell.id ? state._order : 'asc'}
+                                    active={posts._sort === headCell.id}
+                                    direction={posts._order === headCell.id ? posts._order : 'asc'}
                                     onClick={() => {}}
                                 >
                                     {headCell.label}
-                                    <Box sx={{ ...visuallyHidden }}>{state._order === 'desc' ? 'sorted descending' : 'sorted ascending'}</Box>
+                                    <Box sx={{ ...visuallyHidden }}>{posts._order === 'desc' ? 'sorted descending' : 'sorted ascending'}</Box>
                                 </TableSortLabel>
                                 : headCell.label
                             }
@@ -60,7 +86,7 @@ export default function PostTable() {
                 </TableRow>
             </TableHead>
             <TableBody>
-                {state.data.map((row) => {
+                {posts.data.map((row) => {
                     const { id, userId, title, body } = row;
 
                     return (
@@ -75,7 +101,7 @@ export default function PostTable() {
                             <TableCell align="left">{title}</TableCell>
                             <TableCell align="left">{body}</TableCell>
                             <TableCell align="right">
-                                <IconButton onClick={() => {updatePost(id, {id, userId, title, body})}}>
+                                <IconButton onClick={() => handleUpdate(id, {id, userId, title, body})}>
                                     <EditIcon />
                                 </IconButton>
                                 <IconButton onClick={() => handleDelete(id)} aria-label="delete">

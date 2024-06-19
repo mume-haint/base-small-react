@@ -31,7 +31,7 @@ const initialState: AuthState = {
 
 export const authProfile = createAsyncThunk<AuthResponse, unknown>('auth/profile', async (_data: unknown, thunkAPI) => {
     try {
-        const response = await profile() as AuthResponse;
+        const response = await profile() as unknown as AuthResponse;
         if (response?.error) {
             throw new Error('Fetch profile error');
         }
@@ -43,7 +43,7 @@ export const authProfile = createAsyncThunk<AuthResponse, unknown>('auth/profile
 
 export const loginUser = createAsyncThunk<AuthResponse, LoginFormProps>('auth/login', async (data: LoginFormProps, thunkAPI) => {
     try {
-        const response = await login(data.username, data.password) as AuthResponse;
+        const response = await login(data.username, data.password) as unknown as AuthResponse;
         if (response?.error) {
             throw new Error('Fetch profile error');
         }
@@ -92,7 +92,6 @@ export const authSlice = createSlice({
             .addCase(authProfile.fulfilled, (state, action) => {
                 state.user = action.payload.data;
                 state.isAuthenticated = true;
-                console.log('extra reducer', state.isAuthenticated)
             })
             .addCase(authProfile.rejected, () => {
 

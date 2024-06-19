@@ -1,7 +1,6 @@
-import {createContext, PropsWithChildren, useContext, useEffect, useReducer} from 'react';
+import {createContext, PropsWithChildren, useContext, useReducer} from 'react';
 import {Post} from "../types/post.ts";
 import {getContextPosts} from "../api/context-posts.ts";
-import {AxiosResponse} from "axios";
 
 // ----------------------------------------------------------------------
 interface PostContextData {
@@ -15,6 +14,7 @@ interface PostContextData {
 
 interface PostContextType {
     state: PostContextData,
+    initPost: () => void,
     storePost: (data: Post) => void,
     updatePost: (id: number, data: Post) => void,
     deletePost: (id: number) => void,
@@ -107,20 +107,15 @@ export const usePostProvider = () => {
 export function PostProvider({ children }: PropsWithChildren) {
     const [state, dispatch] = useReducer(reducer, initialState);
 
-    useEffect(() => {
-        const initialize = async () => {
-            const res: AxiosResponse<Post[]> = await getContextPosts();
-            dispatch({
-                type: PostContextAction.INIT,
-                payload: {
-                    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                    // @ts-expect-error
-                    init: res
-                },
-            });
-        }
-        initialize();
-    }, []);
+    const initPost = async () => {
+        const res = await getContextPosts() as unknown as Post[];
+        dispatch({
+            type: PostContextAction.INIT,
+            payload: {
+                init: res
+            },
+        });
+    };
 
     const storePost = (data: Post) => {
         dispatch({ type: PostContextAction.STORE, payload: { store: {data} } });
@@ -138,6 +133,7 @@ export function PostProvider({ children }: PropsWithChildren) {
         <PostContext.Provider
             value={{
                 state,
+                initPost,
                 storePost,
                 updatePost,
                 deletePost

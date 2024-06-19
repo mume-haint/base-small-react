@@ -6,13 +6,16 @@ interface HelmetWrapperProps {
     children: ReactNode;
 }
 
-const HelmetWrapper: React.FC<HelmetWrapperProps> = ({ title, children }) => (
-    <>
-        <Helmet>
-            <title>{title}</title>
-        </Helmet>
-        {children}
-    </>
-);
+const HelmetWrapper: React.FC<HelmetWrapperProps> = ({ title, children }) => {
+
+    return (
+        <>
+            <Helmet>
+                <title>{title}</title>
+            </Helmet>
+            {children}
+        </>
+    );
+}
 
 export default HelmetWrapper;

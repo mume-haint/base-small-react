@@ -1,5 +1,7 @@
+// import axios from "./base.ts";
+
 export async function login(username: string, password: string) {
-    // return axios.context-posts('/login', {params: {username, password}});
+    // return axios.post('/login', {params: {username, password}});
     const fakeResponse = {
         data: {
             username: username,

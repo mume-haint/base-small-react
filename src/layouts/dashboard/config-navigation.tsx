@@ -13,8 +13,13 @@ const navConfig = [
         icon: icon('ic_analytics'),
     },
     {
-        title: 'context post',
-        path: '/posts',
+        title: 'local context post',
+        path: '/local-posts',
+        icon: icon('ic_user'),
+    },
+    {
+        title: 'api context post',
+        path: '/api-posts',
         icon: icon('ic_user'),
     },
     {

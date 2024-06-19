@@ -1,6 +1,6 @@
-import { useState } from 'react';
-import { set, sub } from 'date-fns';
-import { faker } from '@faker-js/faker';
+import {useState} from 'react';
+import {set, sub} from 'date-fns';
+import {faker} from '@faker-js/faker';
 
 import Box from '@mui/material/Box';
 import List from '@mui/material/List';
@@ -17,10 +17,9 @@ import ListSubheader from '@mui/material/ListSubheader';
 import ListItemAvatar from '@mui/material/ListItemAvatar';
 import ListItemButton from '@mui/material/ListItemButton';
 
-import { fToNow } from 'src/utils/format-time';
+import {fToNow} from 'src/utils/format-time';
 
 import Iconify from 'src/components/iconify';
-import Scrollbar from 'src/components/scrollbar';
 
 // ----------------------------------------------------------------------
 
@@ -234,7 +233,7 @@ const NotificationsPopover: React.FC = () => {
 
                 <Divider sx={{ borderStyle: 'dashed' }} />
 
-                <Scrollbar className="h-[340px] sm:h-auto">
+                <div className="h-[400px] overflow-y-auto">
                     <List
                         disablePadding
                         subheader={
@@ -260,7 +259,7 @@ const NotificationsPopover: React.FC = () => {
                             <NotificationItem key={notification.id} notification={notification} />
                         ))}
                     </List>
-                </Scrollbar>
+                </div>
 
                 <Divider sx={{ borderStyle: 'dashed' }} />
 

@@ -23,7 +23,6 @@ const ReduxProvider: React.FC<ReduxProviderProps> = ({ children }) => {
                 setAccessToken(accessToken);
                 await dispatch(authProfile(null))
             }
-            console.log('complete redux use effect')
             setIsStoreReady(true);
         };
 

@@ -1,4 +1,3 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
 import {router} from "./routes";
 import './styles/globals.css'
@@ -11,17 +10,15 @@ import NotistackProvider from "src/components/NotistackProvider.tsx";
 import ReduxProvider from "src/components/ReduxProvider.tsx";
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <React.StrictMode>
-        <HelmetProvider>
-            <ThemeProvider>
-                <NotistackProvider>
-                    <Provider store={store}>
-                        <ReduxProvider>
-                            <RouterProvider router={router}/>
-                        </ReduxProvider>
-                    </Provider>
-                </NotistackProvider>
-            </ThemeProvider>
-        </HelmetProvider>
-    </React.StrictMode>,
+    <HelmetProvider>
+        <ThemeProvider>
+            <NotistackProvider>
+                <Provider store={store}>
+                    <ReduxProvider>
+                        <RouterProvider router={router}/>
+                    </ReduxProvider>
+                </Provider>
+            </NotistackProvider>
+        </ThemeProvider>
+    </HelmetProvider>
 )

@@ -72,65 +72,67 @@ export default function RHFPage() {
     };
 
     return (
-        <RHFFormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-            <Grid container spacing={3}>
-                <Grid item xs={12} md={8}>
-                    <Card sx={{ p: 3 }}>
-                        <Stack spacing={3}>
-                            <Stack direction='column' spacing={1}>
-                                <Typography>Text</Typography>
-                                <RHFText name="text" />
+        <div className='p-2 m-2'>
+            <RHFFormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} md={8}>
+                        <Card sx={{ p: 3 }}>
+                            <Stack spacing={3}>
+                                <Stack direction='column' spacing={1}>
+                                    <Typography>Text</Typography>
+                                    <RHFText name="text" />
+                                </Stack>
+                                <Stack direction='column' spacing={1}>
+                                    <Typography>Checkbox</Typography>
+                                    <RHFCheckbox name="checkbox" label="asd" />
+                                </Stack>
+                                <Stack direction='column' spacing={1}>
+                                    <Typography>Multi checkbox</Typography>
+                                    <RHFMultiCheckbox name="multicheckbox" options={['123', '456']} />
+                                </Stack>
+                                <Stack direction='column' spacing={1}>
+                                    <Typography>Select</Typography>
+                                    <RHFSelect name="select">
+                                        <option key="0" value="">
+                                            0
+                                        </option>
+                                        <option key="1" value="1">
+                                            1
+                                        </option>
+                                        <option key="2" value="2">
+                                            2
+                                        </option>
+                                    </RHFSelect>
+                                </Stack>
+                                <Stack direction='column' spacing={1}>
+                                    <Typography>Date</Typography>
+                                    <RHFDate name="date" />
+                                </Stack>
+                                <Stack direction='column' spacing={1}>
+                                    <Typography>Radio group</Typography>
+                                    <RHFRadioGroup
+                                        name="radiogroup"
+                                        options={[
+                                            'asd',
+                                            '123'
+                                        ]}
+                                        getOptionLabel={[
+                                            'asd1',
+                                            '1232'
+                                        ]}
+                                    />
+                                </Stack>
+                                <Stack direction='column' spacing={1}>
+                                    <RHFSwitch name="switch" label="Switch" />
+                                </Stack>
+                                <Stack direction="row" justifyContent="flex-end" spacing={3}>
+                                    <Button variant="outlined" type="submit">Cập nhật</Button>
+                                </Stack>
                             </Stack>
-                            <Stack direction='column' spacing={1}>
-                                <Typography>Checkbox</Typography>
-                                <RHFCheckbox name="checkbox" label="asd" />
-                            </Stack>
-                            <Stack direction='column' spacing={1}>
-                                <Typography>Multi checkbox</Typography>
-                                <RHFMultiCheckbox name="multicheckbox" options={['123', '456']} />
-                            </Stack>
-                            <Stack direction='column' spacing={1}>
-                                <Typography>Select</Typography>
-                                <RHFSelect name="select">
-                                    <option key="0" value="">
-                                        0
-                                    </option>
-                                    <option key="1" value="1">
-                                        1
-                                    </option>
-                                    <option key="2" value="2">
-                                        2
-                                    </option>
-                                </RHFSelect>
-                            </Stack>
-                            <Stack direction='column' spacing={1}>
-                                <Typography>Date</Typography>
-                                <RHFDate name="date" />
-                            </Stack>
-                            <Stack direction='column' spacing={1}>
-                                <Typography>Radio group</Typography>
-                                <RHFRadioGroup
-                                    name="radiogroup"
-                                    options={[
-                                        'asd',
-                                        '123'
-                                    ]}
-                                    getOptionLabel={[
-                                        'asd1',
-                                        '1232'
-                                    ]}
-                                />
-                            </Stack>
-                            <Stack direction='column' spacing={1}>
-                                <RHFSwitch name="switch" label="Switch" />
-                            </Stack>
-                            <Stack direction="row" justifyContent="flex-end" spacing={3}>
-                                <Button variant="outlined" type="submit">Cập nhật</Button>
-                            </Stack>
-                        </Stack>
-                    </Card>
+                        </Card>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </RHFFormProvider>
+            </RHFFormProvider>
+        </div>
     );
 }

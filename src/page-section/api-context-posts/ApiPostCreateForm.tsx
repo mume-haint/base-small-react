@@ -5,25 +5,12 @@ import {Post} from "../../types/post.ts";
 import * as Yup from "yup";
 import {useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
-import {usePostProvider} from "../../context/PostContext.tsx";
 import {enqueueSnackbar} from "notistack";
-import {useEffect} from "react";
+import {useAsyncPostProvider} from "src/context/AsyncPostContext.tsx";
 
-export default function PostCreateForm() {
+export default function ApiPostCreateForm() {
 
-    const {initPost, storePost} = usePostProvider();
-
-    useEffect(() => {
-        const init = async () => {
-            try {
-                await initPost();
-                enqueueSnackbar("Post inited success", {variant: 'success'});
-            } catch (e) {
-                enqueueSnackbar("Post init failed", {variant: 'error'});
-            }
-        }
-        init();
-    }, []);
+    const {addPost} = useAsyncPostProvider();
 
     const CreatePostsSchema = Yup.object().shape({
         userId: Yup.number().typeError('userId must be a number').required('userId is required'),
@@ -52,11 +39,11 @@ export default function PostCreateForm() {
 
     const onSubmit = async (formData: Post) => {
         try {
-            storePost(formData);
+            await addPost(formData);
             enqueueSnackbar('Create post successfully', {variant: 'success', transitionDuration: {enter: 1000, exit: 1000}});
             reset();
         } catch (error) {
-            console.error(error);
+            enqueueSnackbar('Create post failed', {variant: 'error', transitionDuration: {enter: 1000, exit: 1000}});
         }
     };
 

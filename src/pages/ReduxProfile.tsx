@@ -51,30 +51,33 @@ export default function ReduxProfile() {
     };
 
     return (
-        <RHFFormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
-            <Grid container spacing={3}>
-                <Grid item xs={12} md={8}>
-                    <Card sx={{ p: 3 }}>
-                        <Stack spacing={3}>
-                            <Stack direction='column' spacing={1}>
-                                <Typography>Tên đăng nhập</Typography>
-                                <RHFText name="username" />
+        <div className="p-2 m-2">
+            <RHFFormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+                <Grid container spacing={3}>
+                    <Grid item xs={12} md={8}>
+                        <Card sx={{ p: 3 }}>
+                            <Stack spacing={3}>
+                                <Stack direction='column' spacing={1}>
+                                    <Typography>Tên đăng nhập</Typography>
+                                    <RHFText name="username" />
+                                </Stack>
+                                <Stack direction='column' spacing={1}>
+                                    <Typography>Tên người dùng</Typography>
+                                    <RHFText name="display_name" />
+                                </Stack>
+                                <Stack direction='column' spacing={1}>
+                                    <Typography>Avatar</Typography>
+                                    <RHFText name="avatar" />
+                                </Stack>
+                                <Stack direction="row" justifyContent="flex-end" spacing={3}>
+                                    <Button variant="outlined" type="submit">Cập nhật</Button>
+                                </Stack>
                             </Stack>
-                            <Stack direction='column' spacing={1}>
-                                <Typography>Tên người dùng</Typography>
-                                <RHFText name="display_name" />
-                            </Stack>
-                            <Stack direction='column' spacing={1}>
-                                <Typography>Avatar</Typography>
-                                <RHFText name="avatar" />
-                            </Stack>
-                            <Stack direction="row" justifyContent="flex-end" spacing={3}>
-                                <Button variant="outlined" type="submit">Cập nhật</Button>
-                            </Stack>
-                        </Stack>
-                    </Card>
+                        </Card>
+                    </Grid>
                 </Grid>
-            </Grid>
-        </RHFFormProvider>
+            </RHFFormProvider>
+        </div>
+
     );
 }

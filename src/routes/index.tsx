@@ -14,7 +14,8 @@ const Loadable = (Component: ElementType) => () => {
 
 const Login = Loadable(lazy(() => import("src/pages/Login")));
 const Dashboard = Loadable(lazy(() => import("src/pages/Dashboard")));
-const ContextPosts = Loadable(lazy(() => import("src/pages/ContextPosts")));
+const LocalContextPosts = Loadable(lazy(() => import("src/pages/LocalContextPosts.tsx")));
+const ApiContextPosts = Loadable(lazy(() => import("src/pages/ApiContextPosts.tsx")));
 const ReduxProfile = Loadable(lazy(() => import("src/pages/ReduxProfile")));
 const RHFPage = Loadable(lazy(() => import("src/pages/RHFPage")));
 const MUIComponent = Loadable(lazy(() => import("src/pages/MUIComponent")));
@@ -27,8 +28,12 @@ const routes = createRoutesFromElements(
                 element={<HelmetWrapper title="Dashboard"><Dashboard /></HelmetWrapper>}
             />
             <Route
-                path="posts"
-                element={<HelmetWrapper title="Context Posts"><ContextPosts /></HelmetWrapper>}
+                path="local-posts"
+                element={<HelmetWrapper title="Local Context Posts"><LocalContextPosts /></HelmetWrapper>}
+            />
+            <Route
+                path="api-posts"
+                element={<HelmetWrapper title="Api Context Posts"><ApiContextPosts /></HelmetWrapper>}
             />
             <Route
                 path="component"
