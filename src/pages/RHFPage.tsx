@@ -75,12 +75,12 @@ export default function RHFPage() {
         <div className='p-2 m-2'>
             <RHFFormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <Grid container spacing={3}>
-                    <Grid item xs={12} md={8}>
+                    <Grid item xs={12}>
                         <Card sx={{ p: 3 }}>
                             <Stack spacing={3}>
                                 <Stack direction='column' spacing={1}>
                                     <Typography>Text</Typography>
-                                    <RHFText name="text" />
+                                    <RHFText className="w-[300px]" name="text" />
                                 </Stack>
                                 <Stack direction='column' spacing={1}>
                                     <Typography>Checkbox</Typography>
@@ -92,7 +92,7 @@ export default function RHFPage() {
                                 </Stack>
                                 <Stack direction='column' spacing={1}>
                                     <Typography>Select</Typography>
-                                    <RHFSelect name="select">
+                                    <RHFSelect className="w-[300px]" name="select">
                                         <option key="0" value="">
                                             0
                                         </option>
@@ -106,7 +106,7 @@ export default function RHFPage() {
                                 </Stack>
                                 <Stack direction='column' spacing={1}>
                                     <Typography>Date</Typography>
-                                    <RHFDate name="date" />
+                                    <RHFDate className="w-[300px]" name="date" />
                                 </Stack>
                                 <Stack direction='column' spacing={1}>
                                     <Typography>Radio group</Typography>

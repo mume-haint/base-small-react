@@ -68,6 +68,7 @@ export default function Nav({openNav}: NavProps) {
 
   return (
     <div
+      className="transition-[width]"
       style={{
         height: '100vh',
         width: openNav ? NAV.WIDTH : NAV.WIDTH_CLOSE,
@@ -102,6 +103,8 @@ function NavItem({item, openNav}: NavItemProps) {
       component={RouterLink}
       href={item.path}
       sx={{
+        display: 'flex',
+        gap: 2,
         minHeight: 44,
         borderRadius: 0.75,
         typography: 'body2',
@@ -118,7 +121,7 @@ function NavItem({item, openNav}: NavItemProps) {
         }),
       }}
     >
-      <Box component="span" sx={{width: 24, height: 24, mr: 2}}>
+      <Box component="span" sx={{width: 24, height: 24}}>
         {item.icon}
       </Box>
 

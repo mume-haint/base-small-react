@@ -23,7 +23,6 @@ export default function RHFSelect({ name, children, ...other }: RHFSelectProps) 
                     <TextField
                         {...field}
                         select
-                        fullWidth
                         SelectProps={{ native: true }}
                         error={!!error}
                         {...other}

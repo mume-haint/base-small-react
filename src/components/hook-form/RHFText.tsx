@@ -20,7 +20,11 @@ export default function RHFText({ name, ...other }: RHFTextProps) {
             control={control}
             render={({ field, fieldState: { error } }) => (
                 <>
-                    <TextField {...field} error={!!error} helperText={error?.message} {...other} />
+                    <TextField {...field}
+                               error={!!error}
+                               helperText={error?.message}
+                               {...other}
+                    />
                 </>
             )}
         />
