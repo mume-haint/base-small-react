@@ -11,7 +11,7 @@
 # Setup environment
 #### - config .env
   ```typescript
-  VITE_API_URL=
+  VITE_API_URL= 12
   ```
 #### install package
   ```sh

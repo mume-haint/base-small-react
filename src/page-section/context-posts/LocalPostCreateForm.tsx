@@ -9,7 +9,7 @@ import {usePostProvider} from "../../context/PostContext.tsx";
 import {enqueueSnackbar} from "notistack";
 import {useEffect} from "react";
 
-export default function PostCreateForm() {
+export default function LocalPostCreateForm() {
 
     const {initPost, storePost} = usePostProvider();
 

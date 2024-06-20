@@ -1,6 +1,6 @@
-import PostTable from "src/page-section/context-posts/PostTable.tsx";
+import LocalPostTable from "src/page-section/context-posts/LocalPostTable.tsx";
 import {PostProvider} from "../context/PostContext.tsx";
-import PostCreateForm from "src/page-section/context-posts/PostCreateForm.tsx";
+import LocalPostCreateForm from "src/page-section/context-posts/LocalPostCreateForm.tsx";
 
 export default function LocalContextPosts() {
 
@@ -8,8 +8,8 @@ export default function LocalContextPosts() {
     return (
         <div className="p-2 m-2">
             <PostProvider>
-                <PostCreateForm />
-                <PostTable />
+                <LocalPostCreateForm />
+                <LocalPostTable />
             </PostProvider>
         </div>
     )

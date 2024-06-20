@@ -9,6 +9,8 @@ import ThemeProvider from "src/theme";
 import NotistackProvider from "src/components/NotistackProvider.tsx";
 import ReduxProvider from "src/components/ReduxProvider.tsx";
 
+
+
 ReactDOM.createRoot(document.getElementById('root')!).render(
     <HelmetProvider>
         <ThemeProvider>

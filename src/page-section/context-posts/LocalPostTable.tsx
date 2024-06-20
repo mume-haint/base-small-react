@@ -24,7 +24,7 @@ const visuallyHidden = {
     width: '1px',
 };
 
-export default function PostTable() {
+export default function LocalPostTable() {
 
     const {state, updatePost, deletePost} = usePostProvider();
 
