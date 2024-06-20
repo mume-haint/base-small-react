@@ -22,7 +22,11 @@ export default function AuthGuard() {
         const initData = async () => {
             setInit(true);
             if (!isAuthenticated) {
-                router.replace('/401')
+                if(pathname === '/') {
+                    router.replace('/login')
+                } else {
+                    router.replace('/401')
+                }
             }
             if (requestedLocation && pathname !== requestedLocation) {
                 setRequestedLocation(null);
