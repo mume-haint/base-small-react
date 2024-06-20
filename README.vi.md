@@ -76,6 +76,7 @@
 ### tailwind.config.js
 ### tsconfig.json
 ### vite.config.ts
+### vercel.json
 
 ## Todo:
 ### If have backend api
