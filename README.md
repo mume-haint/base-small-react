@@ -76,3 +76,12 @@
 ### tailwind.config.js
 ### tsconfig.json
 ### vite.config.ts
+
+## Todo: 
+### If have backend api
+- api/auth.ts: using axios request to backend server instead of mock data
+
+- utils/jwt.ts: 
+  - inValidToken() function: using jwt-decode library to handle valid token
+  - Add function to handle token expired and refresh token
+

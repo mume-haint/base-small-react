@@ -76,3 +76,11 @@
 ### tailwind.config.js
 ### tsconfig.json
 ### vite.config.ts
+
+## Todo:
+### If have backend api
+- api/auth.ts: Sử dụng axios, tạo request đến backend server thay vì dùng mock data
+
+- utils/jwt.ts: 
+  - function inValidToken() : sử dụng jwt-decode library để xác thực token hợp lệ 
+  - Thêm function xử lý token hết hạn và tự động reset token

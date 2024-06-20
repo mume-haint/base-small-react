@@ -38,6 +38,7 @@ export async function profile() {
 }
 
 export async function logout() {
+    // return axios.post('/logout');
     return new Promise((resolve) => {
         // Simulate network latency
         setTimeout(() => resolve('ok'), 2000);
