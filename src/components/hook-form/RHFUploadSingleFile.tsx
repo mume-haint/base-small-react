@@ -4,14 +4,21 @@ import {Controller, useFormContext} from 'react-hook-form';
 import {FormHelperText} from '@mui/material';
 // type
 import {UploadSingleFile} from '../upload';
+import {DropzoneOptions} from "react-dropzone";
+import {ReactNode} from "react";
+import {SxProps, Theme} from "@mui/system";
 
 // ----------------------------------------------------------------------
 
 
 // ----------------------------------------------------------------------
+interface RHFUploadSingleFileProps extends DropzoneOptions {
+  name: string;
+  helperText?: ReactNode;
+  sx?: SxProps<Theme>;
+}
 
-
-export default function RHFUploadSingleFile({ name, ...other }) {
+export default function RHFUploadSingleFile({ name, ...other }: RHFUploadSingleFileProps) {
   const { control } = useFormContext();
 
   return (

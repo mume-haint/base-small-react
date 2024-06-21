@@ -1,9 +1,10 @@
 import { Controller, useFormContext } from "react-hook-form";
 import { UploadMultiFile } from "src/components/upload";
-import {FormHelperText, SxProps, Theme} from "@mui/material";
+import {FormHelperText} from "@mui/material";
 import {DropzoneOptions} from "react-dropzone";
 import {ReactNode} from "react";
 import {ImagePreview} from "src/types/component/image.ts";
+import {SxProps, Theme} from "@mui/system";
 
 interface RHFUploadMultiFileProps extends DropzoneOptions {
   name: string;

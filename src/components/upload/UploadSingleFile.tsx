@@ -31,10 +31,10 @@ interface UploadSingleFileProps {
   error: boolean,
   file: string | ImagePreview,
   helperText: ReactNode,
-  sx: SxProps<Theme>,
+  sx?: SxProps<Theme>,
 }
 
-export default function UploadSingleFile({ error = false, file, helperText, sx, ...other }: UploadSingleFileProps) {
+export default function UploadSingleFile({ error = false, file, helperText, sx = {}, ...other }: UploadSingleFileProps) {
   const { getRootProps, getInputProps, isDragActive, isDragReject, fileRejections } = useDropzone({
     multiple: false,
     ...other,
