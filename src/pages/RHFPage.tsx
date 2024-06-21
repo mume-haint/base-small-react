@@ -9,7 +9,7 @@ import {Button, Card, Grid, Stack, Typography} from '@mui/material';
 // router-link
 import {
   RHFCheckbox,
-  RHFDate,
+  RHFDate, RHFEditor,
   RHFFormProvider,
   RHFMultiCheckbox,
   RHFRadioGroup,
@@ -17,7 +17,6 @@ import {
   RHFSwitch,
   RHFText, RHFUploadAvatar, RHFUploadMultiFile, RHFUploadSingleFile
 } from 'src/components/hook-form';
-import RHFEditor from "src/components/hook-form/RHFEditor.tsx";
 import {fData} from "src/utils/format-number.ts";
 import {ImagePreview} from "src/types/component/image.ts";
 

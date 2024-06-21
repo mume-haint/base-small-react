@@ -38,18 +38,8 @@ const navConfig = [
         icon: icon('ic_lock'),
     },
     {
-        title: '404',
-        path: '/404',
-        icon: icon('ic_disabled'),
-    },
-    {
-        title: '403',
-        path: '/403',
-        icon: icon('ic_disabled'),
-    },
-    {
-        title: '401',
-        path: '/401',
+        title: 'error pages',
+        path: '/error-pages',
         icon: icon('ic_disabled'),
     },
 ];

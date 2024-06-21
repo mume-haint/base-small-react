@@ -4,7 +4,7 @@ import {SnackbarKey, SnackbarProvider} from 'notistack';
 // @mui
 import {Box} from '@mui/material';
 //
-import Iconify from './iconify';
+import Iconify from '../iconify';
 import Button from "@mui/material/Button";
 
 // ----------------------------------------------------------------------

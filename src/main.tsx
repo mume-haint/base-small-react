@@ -6,8 +6,8 @@ import {Provider} from 'react-redux'
 import {RouterProvider} from 'react-router-dom';
 import {HelmetProvider} from "react-helmet-async";
 import ThemeProvider from "src/theme";
-import NotistackProvider from "src/components/NotistackProvider.tsx";
-import ReduxProvider from "src/components/ReduxProvider.tsx";
+import {NotistackProvider, ReduxProvider} from "src/components/provider";
+
 
 
 
