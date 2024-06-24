@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import {useEffect} from 'react';
 // form
-import {FieldValues, useForm, UseFormReturn} from 'react-hook-form';
+import {FieldValues, useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 // @mui
 import {Button, Card, Grid, Stack, Typography} from '@mui/material';
@@ -31,8 +31,8 @@ export default function ReduxProfile() {
         avatar: '',
     };
 
-    const methods = useForm<AuthUserData>({
-        resolver: yupResolver(UpdateProfileSchema),
+    const methods = useForm<FieldValues>({
+        resolver: yupResolver<FieldValues>(UpdateProfileSchema),
         defaultValues,
     });
 
@@ -46,13 +46,13 @@ export default function ReduxProfile() {
         reset(authProfile.user)
     }, []);
 
-    const onSubmit = (formData: AuthUserData) => {
-        dispatch(update(formData))
+    const onSubmit = (formData: FieldValues) => {
+        dispatch(update(formData as AuthUserData))
     };
 
     return (
         <div className="p-2 m-2">
-            <RHFFormProvider methods={methods as unknown as UseFormReturn<FieldValues>} onSubmit={handleSubmit(onSubmit)}>
+            <RHFFormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
                 <Grid container spacing={3}>
                     <Grid item xs={12} md={8}>
                         <Card sx={{ p: 3 }}>

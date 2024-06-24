@@ -1,6 +1,7 @@
 import {ImagePreview} from "src/types/component/image.ts";
+import {FieldValues} from "react-hook-form";
 
-export interface RHFFormProps {
+export interface RHFFormProps extends FieldValues {
   text: string,
   checkbox: boolean,
   multicheckbox: string[],

@@ -1,18 +1,18 @@
 # 1. Technologies used
 
-Library: React 20<br/>
-Language: TypeScript<br/>
-Build tool: Vite<br/>
+- Library: React 20
+- Language: TypeScript
+- Build tool: Vite
 
-CSS styling: Tailwind<br/>
-Code checking: Eslint<br/>
-Library UI: Material UI<br/>
-Mock API: Beeceptor<br/>
+- CSS styling: Tailwind
+- Code checking: Eslint
+- Library UI: Material UI
+- Mock API: Beeceptor
 
 # 2. Setup environment
 - Step 1: config .env file
   ```typescript
-  VITE_API_URL=12
+  VITE_API_URL=http://foo.com
   ```
 - Step 2: install package
   ```sh
@@ -34,6 +34,14 @@ If build to run in production
   ```sh
   npm run preview
   ```
+  
+# 3. Main feature
+- **API:** using axios
+- **Form control & validation:** using react-hook-form & Yup
+- **Manage global state**: using context & redux/redux-toolkit
+- **Notification:** using notistack + MUI
+- **Handle metadata:** using react-helmet-async
+- **Rich text editor:** using CKEditor
 
 
 # 3. Project structure
@@ -74,45 +82,46 @@ root
    ├─ main.tsx
 ```
 
-## 3.1. public: public data(image, icon, font,...)
-## 3.2. src: logic code
+## 3.1. public: public data in browser (image, icon, font,...)
+## 3.2. src: contain logic code
 ### 3.2.1. Basic
-**_mock:** Contains mock data for testing purposes.
+- **_mock:** Contains mock data for testing purposes.
 
-**api:** functions to call API
-- **base.ts:** Initializes configuration for Axios.
+- **api:** functions to call API
+  - **base.ts:** Initializes configuration for Axios.
 
-**components:** shared component to use among pages
-- **helmet**: Configures metadata for pages in the project.
-- **hook-form**: Reusable component for react-hook-form.
-- **provider:** provider wrapper to using component globally
-- ...
+- **components:** shared component to use among pages
+  - **helmet**: Configures metadata for pages in the project.
+  - **hook-form**: Reusable component for react-hook-form.
+  - **provider:** provider wrapper to using component globally
+  - ...
 
-**layouts:** Configures the page layout: header, navbar, and content areas.<br/>
-**page-section:** Contains component parts of a page<br/>
-**page:** Contains pages of project<br/>
-**route:** Manages routing for the application.<br/>
-**styles:** Contains CSS files for the project.<br/>
-**types:** typescript types, interfaces<br/>
-**utils:** manage global functions using in project<br/>
+- **layouts:** Configures the page layout: header, navbar, and content areas.
+- **page-section:** Contains component parts of a page
+- **page:** Contains pages of project
+- **route:** Manages routing for the application.
+- **styles:** Contains CSS files for the project.
+- **types:** typescript types, interfaces
+- **utils:** manage global functions using in project
 
 ### 3.2.2. Advanced 
 
-**context:** Manages state through nested components without the need to pass props down manually.<br/>
-**redux:** Manages global state using Redux.<br/>
-**guards:** Contains protected logic to handle unauthorized users.<br/>
-**hooks:** Custom hooks to use features in any component.<br/>
-**theme:** override MUI default style
+- **context:** Manages state through nested components without the need to pass props down manually.
+- **redux:** Manages global state using Redux.
+- **guards:** Contains protected logic to handle unauthorized users.
+- **hooks:** Custom hooks to use features in any component.
+- **theme:** override MUI default style
 
 ### 3.2.3. Additional
 
-tailwind.config.js<br/>
-tsconfig.json<br/>
-vite.config.ts<br/>
-vercel.json<br/>
+- tailwind.config.js
+- tsconfig.json
+- vite.config.ts
+- vercel.json
+-
 
-# 4. Todo
-## 4.1. If have backend api
+# 5. Todo
+## 5.1. If have backend api
 Step 1:
 **api/auth.ts**: 
 - using axios request to backend server instead of mock data

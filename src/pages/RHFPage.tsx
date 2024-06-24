@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import {useCallback, useEffect} from 'react';
 // form
-import {FieldValues, useForm, UseFormReturn} from 'react-hook-form';
+import {FieldValues, useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 // @mui
 import {Button, Card, Grid, Stack, Typography} from '@mui/material';
@@ -58,10 +58,8 @@ export default function RHFPage() {
     upload_multi_file: []
   };
 
-  const methods = useForm<RHFFormProps>({
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-expect-error
-    resolver: yupResolver(RHFPageSchema),
+  const methods = useForm<FieldValues>({
+    resolver: yupResolver<RHFFormProps>(RHFPageSchema),
     defaultValues,
   });
 
@@ -132,14 +130,14 @@ export default function RHFPage() {
     setValue('upload_multi_file', filteredItems);
   };
 
-  const onSubmit = async (formData: RHFFormProps) => {
+  const onSubmit = async (formData: FieldValues) => {
     console.log(formData)
   };
 
   return (
     <div className='p-2 m-2'>
 
-      <RHFFormProvider methods={methods as unknown as UseFormReturn<FieldValues>} onSubmit={handleSubmit(onSubmit)}>
+      <RHFFormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Card sx={{p: 3}}>

@@ -9,7 +9,7 @@ import Divider from '@mui/material/Divider';
 import Typography from '@mui/material/Typography';
 import IconButton from '@mui/material/IconButton';
 import LoadingButton from '@mui/lab/LoadingButton';
-import {alpha, useTheme, Theme} from '@mui/material/styles';
+import {alpha, Theme, useTheme} from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
 
 import {useRouter} from 'src/hooks';
@@ -20,7 +20,7 @@ import Logo from 'src/components/logo';
 import Iconify from 'src/components/iconify';
 import {LoginFormProps} from "src/types/auth.ts";
 import {useDispatch} from "react-redux";
-import {FieldValues, useForm, UseFormReturn} from "react-hook-form";
+import {FieldValues, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {loginUser} from "src/redux/slices/authSlice.ts";
 import {RHFFormProvider, RHFText} from "src/components/hook-form";
@@ -42,8 +42,8 @@ const LoginView = () => {
     password: '',
   };
 
-  const methods = useForm<LoginFormProps>({
-    resolver: yupResolver(RHFLoginSchema),
+  const methods = useForm<FieldValues>({
+    resolver: yupResolver<FieldValues>(RHFLoginSchema),
     defaultValues,
   });
 
@@ -56,13 +56,13 @@ const LoginView = () => {
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
-  const onSubmit = async (formData: LoginFormProps) => {
-    await dispatch(loginUser(formData));
+  const onSubmit = async (formData: FieldValues) => {
+    await dispatch(loginUser(formData as LoginFormProps));
     router.push('/');
   };
 
   const renderForm = (
-    <RHFFormProvider methods={methods as unknown as UseFormReturn<FieldValues>} onSubmit={handleSubmit(onSubmit)}>
+    <RHFFormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
         <RHFText disabled={isSubmitting}
                  name="username"
