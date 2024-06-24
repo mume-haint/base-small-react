@@ -1,27 +1,23 @@
-import PropTypes, { InferProps } from 'prop-types';
 // form
-import { FormProvider as Form } from 'react-hook-form';
+import {FormProvider as Form, UseFormReturn} from 'react-hook-form';
+import {ReactNode} from "react";
 
-// ----------------------------------------------------------------------
-RHFFormProvider.propTypes = {
-    children: PropTypes.node.isRequired,
-    methods: PropTypes.object.isRequired,
-    onSubmit: PropTypes.func,
-};
 
-export default function RHFFormProvider({ children, onSubmit, methods } : InferProps<typeof RHFFormProvider.propTypes>) {
-    return (
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        <Form {...methods}>
+interface RHFFormProviderProps {
+  onSubmit?: () => void;
+  methods: UseFormReturn;
+  children?: ReactNode;
+}
 
-            <form
-                // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-                // @ts-expect-error
-                onSubmit={onSubmit}
-            >{children}</form>
-        </Form>
-    );
+export default function RHFFormProvider({children, onSubmit, methods}: RHFFormProviderProps) {
+  return (
+
+    <Form {...methods}>
+      <form onSubmit={onSubmit}>
+        {children}
+      </form>
+    </Form>
+  );
 }
 
 

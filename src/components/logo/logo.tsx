@@ -71,9 +71,7 @@ const Logo = forwardRef<HTMLDivElement, LogoProps>(({ disabledLink = false, sx, 
 
 
     return (
-        // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-        // @ts-expect-error
-        <Link component={RouterLink} to="/" sx={{ display: 'contents' }}>
+        <Link component={RouterLink} href="/" sx={{ display: 'contents' }}>
             {logo}
         </Link>
     );

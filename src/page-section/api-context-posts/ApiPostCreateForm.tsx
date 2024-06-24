@@ -3,7 +3,7 @@ import RHFText from "../../components/hook-form/RHFText.tsx";
 import RHFFormProvider from "../../components/hook-form/RHFFormProvider.tsx";
 import {Post} from "../../types/post.ts";
 import * as Yup from "yup";
-import {useForm} from "react-hook-form";
+import {FieldValues, useForm, UseFormReturn} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {enqueueSnackbar} from "notistack";
 import {useAsyncPostProvider} from "src/context/AsyncPostContext.tsx";
@@ -48,7 +48,7 @@ export default function ApiPostCreateForm() {
     };
 
     return (
-        <RHFFormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+        <RHFFormProvider methods={methods as unknown as UseFormReturn<FieldValues>} onSubmit={handleSubmit(onSubmit)}>
             <Stack direction="column" spacing={3}>
                 <Stack direction="row" spacing={3}>
                     <Typography className='w-[100px]'>userId</Typography>

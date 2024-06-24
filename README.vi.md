@@ -35,6 +35,42 @@ Nếu chạy ở phía nội bộ
 
 
 # 3. Cấu trúc project
+```bash
+root
+├─ public
+   ├─ assets
+      ├─ icons
+         ├─ ...
+      ├─ images
+      ├─ fonts
+      ├─ ...
+├─ src
+   ├─ _mock
+      ├─ ...
+   ├─ api
+      ├─ base.ts
+      ├─ ...
+   ├─ components
+      ├─ helmet
+      ├─ hook-form
+      ├─ provider
+      ├─ ...
+   ├─ context
+   ├─ guards
+   ├─ hooks
+   ├─ layouts
+   ├─ page-section
+   ├─ pages
+   ├─ redux
+   ├─ routes
+   ├─ style
+      ├─ global.css
+      ├─ ...
+   ├─ theme
+   ├─ types
+   ├─ utils
+   ├─ main.tsx
+```
 ## 3.1. public: chứa dữ liệu công khai(hình ảnh, biểu tượng, font,...)
 ## 3.2. src: chứa phần logic code
 ### 3.2.1. Cơ bản

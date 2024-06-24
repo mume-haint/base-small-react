@@ -1,9 +1,9 @@
 # 1. Technologies used
-## 1.1. Core
+
 Library: React 20<br/>
 Language: TypeScript<br/>
 Build tool: Vite<br/>
-## 1.2. Other
+
 CSS styling: Tailwind<br/>
 Code checking: Eslint<br/>
 Library UI: Material UI<br/>
@@ -37,6 +37,42 @@ If build to run in production
 
 
 # 3. Project structure
+```bash
+root
+├─ public
+   ├─ assets
+      ├─ icons
+         ├─ ...
+      ├─ images
+      ├─ fonts
+      ├─ ...
+├─ src
+   ├─ _mock
+      ├─ ...
+   ├─ api
+      ├─ base.ts
+      ├─ ...
+   ├─ components
+      ├─ helmet
+      ├─ hook-form
+      ├─ provider
+      ├─ ...
+   ├─ context
+   ├─ guards
+   ├─ hooks
+   ├─ layouts
+   ├─ page-section
+   ├─ pages
+   ├─ redux
+   ├─ routes
+   ├─ style
+      ├─ global.css
+      ├─ ...
+   ├─ theme
+   ├─ types
+   ├─ utils
+   ├─ main.tsx
+```
 
 ## 3.1. public: public data(image, icon, font,...)
 ## 3.2. src: logic code

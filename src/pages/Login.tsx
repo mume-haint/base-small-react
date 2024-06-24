@@ -20,7 +20,7 @@ import Logo from 'src/components/logo';
 import Iconify from 'src/components/iconify';
 import {LoginFormProps} from "src/types/auth.ts";
 import {useDispatch} from "react-redux";
-import {useForm} from "react-hook-form";
+import {FieldValues, useForm, UseFormReturn} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup";
 import {loginUser} from "src/redux/slices/authSlice.ts";
 import {RHFFormProvider, RHFText} from "src/components/hook-form";
@@ -62,7 +62,7 @@ const LoginView = () => {
   };
 
   const renderForm = (
-    <RHFFormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+    <RHFFormProvider methods={methods as unknown as UseFormReturn<FieldValues>} onSubmit={handleSubmit(onSubmit)}>
       <Stack spacing={3}>
         <RHFText disabled={isSubmitting}
                  name="username"

@@ -1,7 +1,7 @@
 import * as Yup from 'yup';
 import {useCallback, useEffect} from 'react';
 // form
-import {useForm} from 'react-hook-form';
+import {FieldValues, useForm, UseFormReturn} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
 // @mui
 import {Button, Card, Grid, Stack, Typography} from '@mui/material';
@@ -9,32 +9,24 @@ import {Button, Card, Grid, Stack, Typography} from '@mui/material';
 // router-link
 import {
   RHFCheckbox,
-  RHFDate, RHFEditor,
+  RHFDate,
+  RHFEditor,
   RHFFormProvider,
   RHFMultiCheckbox,
   RHFRadioGroup,
   RHFSelect,
   RHFSwitch,
-  RHFText, RHFUploadAvatar, RHFUploadMultiFile, RHFUploadSingleFile
+  RHFText,
+  RHFUploadAvatar,
+  RHFUploadMultiFile,
+  RHFUploadSingleFile
 } from 'src/components/hook-form';
 import {fData} from "src/utils/format-number.ts";
-import {ImagePreview} from "src/types/component/image.ts";
+import {RHFFormProps} from "src/types/component/rhf-props.ts";
 
 // ----------------------------------------------------------------------
 
-interface RHFFormProps {
-  text: string,
-  checkbox: boolean,
-  multicheckbox: string[],
-  select: string,
-  date: unknown,
-  radiogroup: string,
-  switch: boolean,
-  editor: unknown,
-  upload_avatar: unknown,
-  upload_single_file: unknown
-  upload_multi_file: ImagePreview[]
-}
+
 
 export default function RHFPage() {
 
@@ -147,7 +139,7 @@ export default function RHFPage() {
   return (
     <div className='p-2 m-2'>
 
-      <RHFFormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
+      <RHFFormProvider methods={methods as unknown as UseFormReturn<FieldValues>} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <Card sx={{p: 3}}>
