@@ -1,9 +1,7 @@
-import PropTypes from 'prop-types';
 // form
 import {Controller, useFormContext} from 'react-hook-form';
 // @mui
-import {Checkbox, FormControlLabel, FormControlLabelProps, FormGroup} from '@mui/material';
-import {FormHelperText} from "@mui/material";
+import {Checkbox, FormControlLabel, FormControlLabelProps, FormGroup, FormHelperText} from '@mui/material';
 
 // ----------------------------------------------------------------------
 
@@ -40,11 +38,6 @@ export function RHFCheckbox({ name, label = '', ...other }: RHFCheckboxProps) {
 }
 
 // ----------------------------------------------------------------------
-
-RHFMultiCheckbox.propTypes = {
-    name: PropTypes.string,
-    options: PropTypes.arrayOf(PropTypes.string),
-};
 
 interface RHFMultiCheckboxProps extends Omit<FormControlLabelProps, 'name' | 'control' | 'label'> {
     name: string;

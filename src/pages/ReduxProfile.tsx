@@ -78,6 +78,5 @@ export default function ReduxProfile() {
                 </Grid>
             </RHFFormProvider>
         </div>
-
     );
 }

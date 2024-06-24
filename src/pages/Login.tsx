@@ -11,11 +11,8 @@ import IconButton from '@mui/material/IconButton';
 import LoadingButton from '@mui/lab/LoadingButton';
 import {alpha, Theme, useTheme} from '@mui/material/styles';
 import InputAdornment from '@mui/material/InputAdornment';
-
 import {useRouter} from 'src/hooks';
-
 import {bgGradient} from 'src/theme/css';
-
 import Logo from 'src/components/logo';
 import Iconify from 'src/components/iconify';
 import {LoginFormProps} from "src/types/auth.ts";

@@ -26,7 +26,6 @@ const initAsyncPostContextData = {
     total: 0
 }
 
-
 interface AsyncPostContextProps {
     posts: AsyncPostContextData
     initPosts: () => void

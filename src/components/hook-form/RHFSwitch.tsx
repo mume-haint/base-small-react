@@ -1,15 +1,9 @@
-import PropTypes from 'prop-types';
 // form
 import {Controller, useFormContext} from 'react-hook-form';
 // @mui
-import {FormControlLabel, FormControlLabelProps, Switch} from '@mui/material';
-import {FormHelperText} from "@mui/material";
+import {FormControlLabel, FormControlLabelProps, FormHelperText, Switch} from '@mui/material';
 
 // ----------------------------------------------------------------------
-
-RHFSwitch.propTypes = {
-    name: PropTypes.string,
-};
 
 interface RHFSwitchProps extends Omit<FormControlLabelProps, 'name' | 'label' | 'control'>{
     name: string,

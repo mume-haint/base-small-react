@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import Box from '@mui/material/Box';
 import {HEADER} from './config-layout';
 import {ReactNode} from "react";
@@ -34,7 +33,4 @@ export default function Main({ children, sx, ...other }: MainProps) {
     );
 }
 
-Main.propTypes = {
-    children: PropTypes.node,
-    sx: PropTypes.object,
-};
+

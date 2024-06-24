@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 // form
 import {Controller, useFormContext} from 'react-hook-form';
 // @mui
@@ -7,10 +6,6 @@ import {FormHelperText} from '@mui/material';
 import Editor from '../editor';
 
 // ----------------------------------------------------------------------
-
-RHFEditor.propTypes = {
-    name: PropTypes.string,
-};
 
 interface RHFEditorProps {
   name: string

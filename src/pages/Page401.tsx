@@ -8,25 +8,22 @@ import {Link} from "react-router-dom";
 // ----------------------------------------------------------------------
 
 export default function Page401() {
-  const renderHeader = (
-    <Box
-      component="header"
-      sx={{
-        top: 0,
-        left: 0,
-        width: 1,
-        lineHeight: 0,
-        position: 'fixed',
-        p: (theme) => ({ xs: theme.spacing(3, 3, 0), sm: theme.spacing(5, 5, 0) }),
-      }}
-    >
-      <Logo />
-    </Box>
-  );
 
   return (
     <>
-      {renderHeader}
+      <Box
+        component="header"
+        sx={{
+          top: 0,
+          left: 0,
+          width: 1,
+          lineHeight: 0,
+          position: 'fixed',
+          p: (theme) => ({ xs: theme.spacing(3, 3, 0), sm: theme.spacing(5, 5, 0) }),
+        }}
+      >
+        <Logo />
+      </Box>
 
       <Container>
         <Box

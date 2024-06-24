@@ -6,17 +6,12 @@ import {Outlet} from "react-router-dom";
 import DashboardLayout from "src/layouts/dashboard";
 import LoadingScreen from "src/components/LoadingScreen.tsx";
 
-// ----------------------------------------------------------------------
-
 export default function AuthGuard() {
     const {isAuthenticated} = useSelector((state: RootState) => state.auth)
     const pathname = usePathname();
     const router = useRouter();
     const [requestedLocation, setRequestedLocation] = useState(null);
     const [init, setInit] = useState(false);
-    useEffect(() => {
-
-    }, [])
 
     useEffect(() => {
         const initData = async () => {

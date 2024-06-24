@@ -9,7 +9,6 @@ interface LogoProps extends BoxProps {
     disabledLink?: boolean;
 }
 
-
 const Logo = forwardRef<HTMLDivElement, LogoProps>(({ disabledLink = false, sx, ...other }, ref) => {
     const theme = useTheme<Theme>();
 

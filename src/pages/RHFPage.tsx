@@ -1,12 +1,8 @@
 import * as Yup from 'yup';
 import {useCallback, useEffect} from 'react';
-// form
 import {FieldValues, useForm} from 'react-hook-form';
 import {yupResolver} from '@hookform/resolvers/yup';
-// @mui
 import {Button, Card, Grid, Stack, Typography} from '@mui/material';
-// routes
-// router-link
 import {
   RHFCheckbox,
   RHFDate,
@@ -23,10 +19,6 @@ import {
 } from 'src/components/hook-form';
 import {fData} from "src/utils/format-number.ts";
 import {RHFFormProps} from "src/types/component/rhf-props.ts";
-
-// ----------------------------------------------------------------------
-
-
 
 export default function RHFPage() {
 
@@ -78,7 +70,6 @@ export default function RHFPage() {
   const handleDrop = useCallback(
     (acceptedFiles: File[]) => {
       const file = acceptedFiles[0];
-
       if (file) {
         setValue(
           'upload_avatar',
@@ -94,7 +85,6 @@ export default function RHFPage() {
   const handleDropSingleFile = useCallback(
     (acceptedFiles: File[]) => {
       const file = acceptedFiles[0];
-
       if (file) {
         setValue(
           'upload_single_file',
@@ -136,7 +126,6 @@ export default function RHFPage() {
 
   return (
     <div className='p-2 m-2'>
-
       <RHFFormProvider methods={methods} onSubmit={handleSubmit(onSubmit)}>
         <Grid container spacing={3}>
           <Grid item xs={12}>

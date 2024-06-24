@@ -9,7 +9,6 @@ interface IconifyProps extends BoxProps {
     height?: number;
 }
 
-
 const Iconify = forwardRef<SVGSVGElement, IconifyProps>(
     (
         {
