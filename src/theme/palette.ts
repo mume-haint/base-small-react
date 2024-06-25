@@ -1,9 +1,39 @@
-import { alpha } from '@mui/material/styles';
-import {PaletteMode} from "@mui/material";
+import {alpha, PaletteOptions} from '@mui/material/styles';
 
-// ----------------------------------------------------------------------
+declare module '@mui/material' {
+  interface Color {
+    50: string;
+    100: string;
+    200: string;
+    300: string;
+    400: string;
+    500: string;
+    600: string;
+    700: string;
+    800: string;
+    900: string;
+    A100: string;
+    A200: string;
+    A400: string;
+    A700: string;
+    500_8: string,
+    500_12: string,
+    500_16: string,
+    500_24: string,
+    500_32: string,
+    500_48: string,
+    500_56: string,
+    500_80: string
+  }
+}
 
-// SETUP COLORS
+declare module '@mui/material/styles' {
+  interface TypeBackground {
+    default: string;
+    paper: string;
+    neutral: string;
+  }
+}
 
 export const grey = {
   0: '#FFFFFF',
@@ -16,6 +46,14 @@ export const grey = {
   700: '#454F5B',
   800: '#212B36',
   900: '#161C24',
+  500_8: alpha('#919EAB', 0.08),
+  500_12: alpha('#919EAB', 0.12),
+  500_16: alpha('#919EAB', 0.16),
+  500_24: alpha('#919EAB', 0.24),
+  500_32: alpha('#919EAB', 0.32),
+  500_48: alpha('#919EAB', 0.48),
+  500_56: alpha('#919EAB', 0.56),
+  500_80: alpha('#919EAB', 0.8),
 };
 
 export const primary = {
@@ -100,25 +138,48 @@ const base = {
   action,
 };
 
-// ----------------------------------------------------------------------
+interface PaletteType {
+  light: PaletteOptions;
+  dark: PaletteOptions;
+}
 
-export function palette() {
-  return {
-    ...base,
-    mode: 'light' as PaletteMode,
-    text: {
-      primary: grey[800],
-      secondary: grey[600],
-      disabled: grey[500],
+
+export const palette: PaletteType = {
+    light: {
+      ...base,
+      mode: 'light',
+      text: {
+        primary: grey[800],
+        secondary: grey[600],
+        disabled: grey[500],
+      },
+      background: {
+        paper: '#FFFFFF',
+        default: grey[100],
+        neutral: grey[500_16],
+      },
+      action: {
+        ...base.action,
+        active: grey[600],
+      },
     },
-    background: {
-      paper: '#FFFFFF',
-      default: grey[100],
-      neutral: grey[200],
-    },
-    action: {
-      ...base.action,
-      active: grey[600],
-    },
-  };
+    dark: {
+      ...base,
+      mode: 'dark',
+      text: {
+        primary: '#fff',
+        secondary: grey[500],
+        disabled: grey[600]
+      },
+      background: {
+        paper: grey[800],
+        default: grey[900],
+        neutral: grey[500_16]
+      },
+      action: {
+        ...base.action,
+        active: grey[500],
+      },
+    }
+
 }

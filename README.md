@@ -36,12 +36,11 @@ If build to run in production
   ```
   
 # 3. Main feature
-- **API:** using axios
-- **Form control & validation:** using react-hook-form & Yup
-- **Manage global state**: using context & redux/redux-toolkit
-- **Notification:** using notistack + MUI
-- **Handle metadata:** using react-helmet-async
-- **Rich text editor:** using CKEditor
+- **API:** using [axios](https://axios-http.com/docs/intro) + handle jwt token with [jwt-decode](https://www.npmjs.com/package/jwt-decode)
+- **Form control & validation:** using [react-hook-form](https://react-hook-form.com/get-started) & [Yup](https://github.com/jquense/yup/tree/master)
+- **Manage global state**: using context & redux/[redux-toolkit](https://redux-toolkit.js.org/introduction/getting-started)
+- **Notification:** using [notistack](https://notistack.com/getting-started) + MUI
+- **Handle metadata:** using [react-helmet-async](https://www.npmjs.com/package/react-helmet-async)
 
 
 # 3. Project structure

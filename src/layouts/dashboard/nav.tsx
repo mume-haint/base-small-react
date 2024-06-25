@@ -6,24 +6,17 @@ import Avatar from '@mui/material/Avatar';
 import {alpha} from '@mui/material/styles';
 import Typography from '@mui/material/Typography';
 import ListItemButton from '@mui/material/ListItemButton';
-
 import {usePathname} from 'src/hooks';
 import {RouterLink} from 'src/components/router-link';
-
 import Logo from 'src/components/logo';
 import navConfig from './config-navigation';
 import {NAV} from "src/layouts/dashboard/config-layout.ts";
 import {RootState} from "src/redux/store.ts";
 import {useSelector} from "react-redux";
+import useSettings from "src/hooks/useSettings.tsx";
 
-// ----------------------------------------------------------------------
-
-interface NavProps {
-  openNav: boolean;
-}
-
-export default function Nav({openNav}: NavProps) {
-
+export default function Nav() {
+  const {sidebarCollapsed} = useSettings();
   const {user} = useSelector((state: RootState) => state.auth)
 
   const renderAccount = (
@@ -53,7 +46,7 @@ export default function Nav({openNav}: NavProps) {
   const renderMenu = (
     <Stack component="nav" spacing={0.5} sx={{px: 2}}>
       {navConfig.map((item) => (
-        <NavItem openNav={openNav} key={item.title} item={item}/>
+        <NavItem open={!sidebarCollapsed} key={item.title} item={item}/>
       ))}
     </Stack>
   );
@@ -61,7 +54,7 @@ export default function Nav({openNav}: NavProps) {
   const renderContent = (
     <>
       <Logo sx={{mt: 3, ml: 4}}/>
-      {openNav && renderAccount}
+      {!sidebarCollapsed && renderAccount}
       {renderMenu}
     </>
   );
@@ -71,7 +64,7 @@ export default function Nav({openNav}: NavProps) {
       className="transition-[width]"
       style={{
         height: '100vh',
-        width: openNav ? NAV.WIDTH : NAV.WIDTH_CLOSE,
+        width: !sidebarCollapsed ? NAV.WIDTH : NAV.WIDTH_CLOSE,
         overflowY: 'auto',
         borderRight: `solid 1px #cccccc`,
       }}
@@ -85,7 +78,7 @@ export default function Nav({openNav}: NavProps) {
 // ----------------------------------------------------------------------
 
 interface NavItemProps {
-  openNav?: boolean;
+  open?: boolean;
   item: {
     path: string;
     title: string;
@@ -93,7 +86,7 @@ interface NavItemProps {
   };
 }
 
-function NavItem({item, openNav}: NavItemProps) {
+function NavItem({item, open}: NavItemProps) {
   const pathname = usePathname();
 
   const active = item.path === pathname;
@@ -125,7 +118,7 @@ function NavItem({item, openNav}: NavItemProps) {
         {item.icon}
       </Box>
 
-      {openNav && <Box component="span">{item.title}</Box>}
+      {open && <Box component="span">{item.title}</Box>}
     </ListItemButton>
   );
 }

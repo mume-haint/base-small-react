@@ -7,25 +7,28 @@ import LanguagePopover from './common/language-popover.tsx';
 import NotificationsPopover from './common/notifications-popover';
 import IconButton from "@mui/material/IconButton";
 import Iconify from "src/components/iconify";
+import ThemeSwitch from "src/layouts/dashboard/common/theme-switch.tsx";
+import useSettings from "src/hooks/useSettings.tsx";
 
 // ----------------------------------------------------------------------
 
-interface HeaderProps extends BoxProps {
-  onOpenNav: () => void
-}
 
-const Header = ({onOpenNav, ...other}: HeaderProps) => {
+
+const Header = ({...other}: BoxProps) => {
   const theme: Theme = useTheme();
+  const { onToggleSidebarCollapsed } = useSettings();
+
 
   const renderContent = (
     <>
-      <IconButton onClick={onOpenNav} sx={{mr: 1}}>
+      <IconButton onClick={onToggleSidebarCollapsed} sx={{mr: 1}}>
         <Iconify icon="eva:menu-2-fill"/>
       </IconButton>
 
       <Box sx={{flexGrow: 1}}/>
 
       <Stack direction="row" alignItems="center" spacing={1}>
+        <ThemeSwitch/>
         <LanguagePopover/>
         <NotificationsPopover/>
         <AccountPopover/>
@@ -42,7 +45,7 @@ const Header = ({onOpenNav, ...other}: HeaderProps) => {
           duration: theme.transitions.duration.shorter,
         }),
         display: 'block',
-        bgcolor: 'rgba(203,202,202,0.8)'
+        backgroundColor: theme.palette.grey[500_24],
       }}
       {...other}
     >

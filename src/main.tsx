@@ -7,20 +7,21 @@ import {RouterProvider} from 'react-router-dom';
 import {HelmetProvider} from "react-helmet-async";
 import ThemeProvider from "src/theme";
 import {NotistackProvider, ReduxProvider} from "src/components/provider";
-
-
+import {SettingsProvider} from "src/context/SettingsContext.tsx";
 
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
-    <HelmetProvider>
-        <ThemeProvider>
-            <NotistackProvider>
-                <Provider store={store}>
-                    <ReduxProvider>
-                        <RouterProvider router={router}/>
-                    </ReduxProvider>
-                </Provider>
-            </NotistackProvider>
-        </ThemeProvider>
-    </HelmetProvider>
+  <HelmetProvider>
+    <SettingsProvider>
+      <ThemeProvider>
+        <NotistackProvider>
+          <Provider store={store}>
+            <ReduxProvider>
+              <RouterProvider router={router}/>
+            </ReduxProvider>
+          </Provider>
+        </NotistackProvider>
+      </ThemeProvider>
+    </SettingsProvider>
+  </HelmetProvider>
 )

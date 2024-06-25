@@ -1,4 +1,4 @@
-import {ReactNode, useState} from 'react';
+import {ReactNode} from 'react';
 
 import {Box} from '@mui/material';
 
@@ -11,13 +11,12 @@ interface DashboardLayoutProps {
 }
 
 export default function DashboardLayout({children}: DashboardLayoutProps) {
-  const [openNav, setOpenNav] = useState(true);
 
   return (
     <div className="w-screen h-screen flex">
-      <Nav openNav={openNav}/>
+      <Nav/>
       <Box className="h-screen flex flex-col flex-1 items-stretch overflow-auto">
-        <Header className="sticky top-0 flex-0" onOpenNav={() => setOpenNav(!openNav)}/>
+        <Header className="sticky top-0 flex-0 backdrop-blur"/>
         <div className="flex-1">{children}</div>
       </Box>
     </div>
