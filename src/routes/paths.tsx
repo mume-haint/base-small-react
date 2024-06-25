@@ -29,6 +29,7 @@ const ErrorPages = Loadable(lazy(() => import("src/pages/ErrorPages")));
 const Page404 = Loadable(lazy(() => import("src/pages/Page404")));
 const Page403 = Loadable(lazy(() => import("src/pages/Page403")));
 const Page401 = Loadable(lazy(() => import("src/pages/Page401")));
+const SettingPage = Loadable(lazy(() => import("src/pages/SettingsPage")));
 
 
 export const authRoutes: RouteConfig[] = [
@@ -70,6 +71,11 @@ export const authRoutes: RouteConfig[] = [
         path: "error-pages",
         element: <ErrorPages />,
         title: "Error Pages"
+      },
+      {
+        path: "settings",
+        element: <SettingPage />,
+        title: "Setting pages"
       }
     ]
   }

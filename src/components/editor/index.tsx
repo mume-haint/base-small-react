@@ -20,7 +20,6 @@ const EditorContainer = styled(Box)(({ theme }) => ({
     padding: theme.spacing(2),
   },
   '& .ck-toolbar': {
-    backgroundColor: theme.palette.background.paper,
     borderBottom: `1px solid ${theme.palette.divider}`,
   },
   '& .ck-button': {

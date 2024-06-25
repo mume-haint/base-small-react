@@ -32,6 +32,7 @@ declare module '@mui/material/styles' {
     default: string;
     paper: string;
     neutral: string;
+    light: string;
   }
 }
 
@@ -156,6 +157,7 @@ export const palette: PaletteType = {
       background: {
         paper: '#FFFFFF',
         default: grey[100],
+        light: grey[300],
         neutral: grey[500_16],
       },
       action: {
@@ -174,6 +176,7 @@ export const palette: PaletteType = {
       background: {
         paper: grey[800],
         default: grey[900],
+        light: grey[600],
         neutral: grey[500_16]
       },
       action: {
