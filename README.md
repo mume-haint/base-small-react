@@ -43,7 +43,7 @@ If build to run in production
 - **Handle metadata:** using [react-helmet-async](https://www.npmjs.com/package/react-helmet-async)
 
 
-# 3. Project structure
+# 4. Project structure
 ```bash
 root
 ├─ public
@@ -81,9 +81,9 @@ root
    ├─ main.tsx
 ```
 
-## 3.1. public: public data in browser (image, icon, font,...)
-## 3.2. src: contain logic code
-### 3.2.1. Basic
+## 4.1. public: public data in browser (image, icon, font,...)
+## 4.2. src: contain logic code
+### 4.2.1. Basic
 - **_mock:** Contains mock data for testing purposes.
 
 - **api:** functions to call API
@@ -103,7 +103,7 @@ root
 - **types:** typescript types, interfaces
 - **utils:** manage global functions using in project
 
-### 3.2.2. Advanced 
+### 4.2.2. Advanced 
 
 - **context:** Manages state through nested components without the need to pass props down manually.
 - **redux:** Manages global state using Redux.
@@ -111,7 +111,7 @@ root
 - **hooks:** Custom hooks to use features in any component.
 - **theme:** override MUI default style
 
-### 3.2.3. Additional
+### 4.2.3. Additional
 
 - tailwind.config.js
 - tsconfig.json

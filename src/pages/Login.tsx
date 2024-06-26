@@ -22,6 +22,7 @@ import {yupResolver} from "@hookform/resolvers/yup";
 import {loginUser} from "src/redux/slices/authSlice.ts";
 import {RHFFormProvider, RHFText} from "src/components/hook-form";
 import {AppDispatch} from "src/redux/store.ts";
+import {enqueueSnackbar} from "notistack";
 
 // ----------------------------------------------------------------------
 
@@ -54,8 +55,12 @@ const LoginView = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
 
   const onSubmit = async (formData: FieldValues) => {
-    await dispatch(loginUser(formData as LoginFormProps));
-    router.push('/');
+    try {
+      await dispatch(loginUser(formData as LoginFormProps));
+      router.push('/');
+    } catch (e) {
+      enqueueSnackbar('Đăng nhập thất bại', {variant: 'error'});
+    }
   };
 
   const renderForm = (

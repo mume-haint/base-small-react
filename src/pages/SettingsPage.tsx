@@ -62,7 +62,7 @@ export default function SettingsPage() {
           <Card sx={{p: 3}}>
             <Stack spacing={3}>
               <Stack direction='column' spacing={1}>
-                <Typography>Collapsed sidebar</Typography>
+                <Typography>Theme mode</Typography>
                 <MaterialUISwitch checked={themeMode === 'dark'} onChange={onToggleMode} />
               </Stack>
               <Stack direction='column' spacing={1}>

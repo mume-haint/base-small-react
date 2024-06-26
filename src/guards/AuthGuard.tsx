@@ -14,7 +14,7 @@ export default function AuthGuard() {
     const [init, setInit] = useState(false);
 
     useEffect(() => {
-        const initData = async () => {
+        const initData = () => {
             setInit(true);
             if (!isAuthenticated) {
                 if(pathname === '/') {

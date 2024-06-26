@@ -14,10 +14,13 @@ import {NAV} from "src/layouts/dashboard/config-layout.ts";
 import {RootState} from "src/redux/store.ts";
 import {useSelector} from "react-redux";
 import useSettings from "src/hooks/useSettings.tsx";
+import {useResponsive} from 'src/hooks/useResponsive';
+import Drawer from "@mui/material/Drawer";
 
 export default function Nav() {
-  const {sidebarCollapsed} = useSettings();
+  const {sidebarCollapsed, onChangeSidebarCollapsed} = useSettings();
   const {user} = useSelector((state: RootState) => state.auth)
+  const upLg = useResponsive('up', 'lg');
 
   const renderAccount = (
     <Box
@@ -46,7 +49,7 @@ export default function Nav() {
   const renderMenu = (
     <Stack component="nav" spacing={0.5} sx={{px: 2}}>
       {navConfig.map((item) => (
-        <NavItem open={!sidebarCollapsed} key={item.title} item={item}/>
+        <NavItem open={!sidebarCollapsed || !upLg} key={item.title} item={item}/>
       ))}
     </Stack>
   );
@@ -54,13 +57,15 @@ export default function Nav() {
   const renderContent = (
     <>
       <Logo sx={{mt: 3, ml: 4}}/>
-      {!sidebarCollapsed && renderAccount}
+      {(!sidebarCollapsed || !upLg) && renderAccount}
       {renderMenu}
     </>
   );
 
-  return (
-    <div
+
+
+  return (upLg ? (
+    <Box
       className="transition-[width]"
       style={{
         height: '100vh',
@@ -69,10 +74,26 @@ export default function Nav() {
         borderRight: `solid 1px #cccccc`,
       }}
     >
-
       {renderContent}
-    </div>
-  );
+    </Box>
+  ) : (
+    <Drawer
+      variant="temporary"
+      sx={{
+        background: 'none',
+      }}
+      PaperProps={{
+        sx: {
+          backgroundImage: "none",
+          boxShadow: 'none'
+        }
+      }}
+      open={!sidebarCollapsed}
+      onClose={() => {onChangeSidebarCollapsed(true)}}
+    >
+      {renderContent}
+    </Drawer>
+  ));
 }
 
 // ----------------------------------------------------------------------

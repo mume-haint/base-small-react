@@ -19,6 +19,7 @@ import {
 } from 'src/components/hook-form';
 import {fData} from "src/utils/format-number.ts";
 import {RHFFormProps} from "src/types/component/rhf-props.ts";
+import {enqueueSnackbar} from "notistack";
 
 export default function RHFPage() {
 
@@ -121,7 +122,12 @@ export default function RHFPage() {
   };
 
   const onSubmit = async (formData: FieldValues) => {
-    console.log(formData)
+    try {
+      console.log(formData);
+      // await sendRHFData(formData);
+    } catch (_e) {
+      enqueueSnackbar('Send form data failed!', {variant: 'error'})
+    }
   };
 
   return (

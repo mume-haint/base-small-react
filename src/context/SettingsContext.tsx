@@ -1,12 +1,12 @@
-import {ChangeEvent, createContext, ReactNode} from 'react';
+import {createContext, ReactNode} from 'react';
 import useLocalStorage from '../hooks/useLocalStorage';
 
 export interface SettingsState {
   themeMode: string;
   sidebarCollapsed: boolean;
-  onChangeMode: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeMode: (value: string) => void;
   onToggleMode: () => void;
-  onChangeSidebarCollapsed: (event: ChangeEvent<HTMLInputElement>) => void;
+  onChangeSidebarCollapsed: (value: boolean) => void;
   onToggleSidebarCollapsed: () => void;
 }
 
@@ -31,10 +31,10 @@ function SettingsProvider({ children }: SettingsProviderProps) {
     sidebarCollapsed: initialState.sidebarCollapsed,
   });
 
-  const onChangeMode = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeMode = (value: string) => {
     setSettings({
       ...settings,
-      themeMode: event.target.value,
+      themeMode: value === 'light' ? 'light' : 'dark',
     });
   };
 
@@ -45,10 +45,10 @@ function SettingsProvider({ children }: SettingsProviderProps) {
     });
   };
 
-  const onChangeSidebarCollapsed = (event: ChangeEvent<HTMLInputElement>) => {
+  const onChangeSidebarCollapsed = (value: boolean) => {
     setSettings({
       ...settings,
-      sidebarCollapsed: event.target.checked,
+      sidebarCollapsed: value,
     });
   };
 
