@@ -109,7 +109,7 @@ root
 - **redux:** Manages global state using Redux.
 - **guards:** Contains protected logic to handle unauthorized users.
 - **hooks:** Custom hooks to use features in any component.
-- **theme:** override MUI default style
+- **theme:** override MUI default style: color, theme mode,...
 
 ### 4.2.3. Additional
 

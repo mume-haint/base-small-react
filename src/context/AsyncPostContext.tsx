@@ -27,7 +27,8 @@ const initAsyncPostContextData = {
 }
 
 interface AsyncPostContextProps {
-    posts: AsyncPostContextData
+    posts: AsyncPostContextData,
+    loading: boolean,
     initPosts: () => void
     addPost: (data: Post) => void
     updatePost: (id: number, data: Post) => void
@@ -48,39 +49,61 @@ export const useAsyncPostProvider = (): AsyncPostContextProps => {
 
 export function AsyncPostProvider({ children }: PropsWithChildren) {
     const [posts, setPosts] = useState<AsyncPostContextData>(initAsyncPostContextData)
+    const [loading, setLoading] = useState<boolean>(false)
 
     const initPosts = async () => {
-        const newData = await getContextPosts() as unknown as Post[];
-        setPosts({...posts, data: newData});
+        try {
+            setLoading(true)
+            const newData = await getContextPosts() as unknown as Post[];
+            setPosts({...posts, data: newData});
+        } finally {
+            setLoading(false)
+        }
     }
 
     const addPost = async (req: Post) => {
-        await storeContextPost(req);
-        const newData = await getContextPosts() as unknown as Post[];
-        setPosts({...posts, data: newData});
+        try {
+            setLoading(true)
+            await storeContextPost(req);
+            const newData = await getContextPosts() as unknown as Post[];
+            setPosts({...posts, data: newData});
+        } finally {
+            setLoading(false)
+        }
     }
 
     const updatePost = async (id: number, body: Post) => {
-        await updateContextPost(id, body);
-        const newData = await getContextPosts() as unknown as Post[];
-        setPosts({...posts, data: newData});
+        try {
+            setLoading(true)
+            await updateContextPost(id, body);
+            const newData = await getContextPosts() as unknown as Post[];
+            setPosts({...posts, data: newData});
+        } finally {
+            setLoading(false)
+        }
     }
 
     const deletePost = async (id: number) => {
-        await deleteContextPost(id);
-        const newData = await getContextPosts() as unknown as Post[];
-        setPosts({...posts, data: newData});
+        try {
+            setLoading(true)
+            await deleteContextPost(id);
+            const newData = await getContextPosts() as unknown as Post[];
+            setPosts({...posts, data: newData});
+        } finally {
+            setLoading(false)
+        }
     }
 
     const StateProviderValue = useMemo(
         () => ({
             posts,
+            loading,
             initPosts,
             addPost,
             updatePost,
             deletePost
         }),
-        [posts, initPosts, addPost, updatePost, deletePost],
+        [posts, loading, initPosts, addPost, updatePost, deletePost],
     )
 
     return (
